@@ -33,8 +33,11 @@ body {
   color: #b9b9b9;
   background-color: #e3e3e3;
 }
-h3 {  
+h4, h2 {  
   color: #1d4f1d;
+}
+h2 {
+  text-align: center;
 }
 input,
 input[type="radio"] + label,
