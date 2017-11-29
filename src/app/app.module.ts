@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ItemsPageComponent } from './items-page/items-page.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const appRoutes:Routes = [
   {
@@ -23,6 +26,18 @@ const appRoutes:Routes = [
   {
     path: '',
     component: LoginComponent,
+  },
+  {
+    path: 'item',
+    component: ItemsPageComponent
+  },
+  {
+    path: 'cart',
+    component: ShoppingCartComponent
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent
   }
 ];
 
@@ -31,7 +46,10 @@ const appRoutes:Routes = [
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ItemsPageComponent,
+    ShoppingCartComponent,
+    CheckoutComponent
   ],
   imports: [
   RouterModule.forRoot(appRoutes),
