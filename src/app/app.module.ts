@@ -11,6 +11,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { UserService } from './user.service';
 
+import { HttpClientModule } from '@angular/common/http';
+
 const appRoutes:Routes = [
   {
     path: 'login',
@@ -50,11 +52,12 @@ const appRoutes:Routes = [
     RegisterComponent,
     ItemsPageComponent,
     ShoppingCartComponent,
-    CheckoutComponent
+    CheckoutComponent,
   ],
   imports: [
-  RouterModule.forRoot(appRoutes),
-    BrowserModule
+    RouterModule.forRoot(appRoutes),
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
