@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { ItemsPageComponent } from './items-page/items-page.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { UserService } from './user.service';
 
 const appRoutes:Routes = [
   {
@@ -55,7 +56,7 @@ const appRoutes:Routes = [
   RouterModule.forRoot(appRoutes),
     BrowserModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
