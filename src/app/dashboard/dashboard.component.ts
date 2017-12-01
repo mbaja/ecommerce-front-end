@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { INVENTORY } from './mock-items';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,6 +9,8 @@ import { UserService } from '../user.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  
+  items = INVENTORY;
 
   constructor(private router:Router, private user:UserService) { }
 

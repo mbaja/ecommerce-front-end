@@ -10,6 +10,8 @@ import { ItemsPageComponent } from './items-page/items-page.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { UserService } from './user.service';
+import { BucciComponent } from './bucci/bucci.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -41,6 +43,14 @@ const appRoutes:Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent
+  },
+  {
+    path: 'myaccount',
+    component: MyaccountComponent
+  },
+  {
+    path: 'bucci',
+    component: BucciComponent
   }
 ];
 
@@ -53,6 +63,8 @@ const appRoutes:Routes = [
     ItemsPageComponent,
     ShoppingCartComponent,
     CheckoutComponent,
+    BucciComponent,
+    MyaccountComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
