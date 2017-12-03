@@ -1,7 +1,5 @@
-.gender-input {
- float: right;
- box-sizing: border-box;
- width: 100%
+#vendorDesc {
+  text-overflow: 
 }
 
 button {

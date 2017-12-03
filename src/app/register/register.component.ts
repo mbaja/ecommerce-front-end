@@ -9,66 +9,91 @@ import { User } from '../objects/user';
 })
 export class RegisterComponent implements OnInit {
 
+  customerUserName:string;
+  customerFirstName:string;
+  customerLastName:string;
+  customerEmail:string;
+  customerPassword:string;
+  customerPhone:string;
+  customerAddressStreet:string;
+  customerAddressCity:string;
+  customerAddressState:string;
+  customerAddressZip:number;
+  customerAddressCountry:string;
+  // customerDOBDD:number;
+  // customerDOBMM:number;
+  // customerDOBYYYY:number;
+  // customerGender:string;
+
+  vendorUserName:string;
+  vendorPassword:string;
+  vendorDesc:string;
+
+
   constructor(private router:Router) { }
 
   ngOnInit() {
   }
 
-  registerUser(e) {
-    var userName = e.target.elements[0].value;
-    var firstName = e.target.elements[1].value;
-    var lastName = e.target.elements[2].value;
-    var email = e.target.elements[3].value;
-    var password = e.target.elements[4].value;
-    var phone = e.target.elements[5].value;
-    var addressStreet = e.target.elements[6].value;
-    var addressCity = e.target.elements[7].value;
-    var addressState = e.target.elements[8].value;
-    var addressZip = e.target.elements[9].value;
-    var addressCountry = e.target.elements[10].value;
-    var DOBDD = e.target.elements[11].value;
-    var DOBMM = e.target.elements[12].value;
-    var DOBYYYY = e.target.elements[13].value;
-    var gender = e.target.elements[14].value;
-    var cardNum = e.target.elements[15].value;
-    var cardCVC = e.target.elements[16].value;
-    var cardExpMM = e.target.elements[17].value;
-    var cardExpYYYY = e.target.elements[18].value;
+  selectCustomerTab(e){
+    console.log("Customer");
+    // Set tab toggle
+    document.getElementById("customertab").className = "active";
+    document.getElementById("vendortab").className = "";
+
+    // Set content toggle
+    document.getElementById("customercontent").className = "tab-pane fade in active";
+    document.getElementById("vendorcontent").className = "tab-pane fade";    
+  }
+
+  selectVendorTab(e){
+    console.log("Vendor");
+    // Set tab toggle
+    document.getElementById("customertab").className = "";
+    document.getElementById("vendortab").className = "active";
+
+    // Set content toggle
+    document.getElementById("customercontent").className = "tab-pane fade";
+    document.getElementById("vendorcontent").className = "tab-pane fade in active";    
+  }
+
+  registerCustomer(e) {
+    console.log("User Name:            ", this.customerUserName);
+    console.log("User First Name:      ", this.customerFirstName);
+    console.log("User Last Name:       ", this.customerLastName);
+    console.log("User Email:           ", this.customerEmail);
+    console.log("User Password:        ", this.customerPassword);
+    console.log("User Phone:           ", this.customerPhone);
+    console.log("User Address Street:  ", this.customerAddressStreet);
+    console.log("User Address City:    ", this.customerAddressCity);
+    console.log("User Address State:   ", this.customerAddressState);
+    console.log("User Address ZIP:     ", this.customerAddressZip);
+    console.log("User Address Country: ", this.customerAddressCountry);
 
     var newUser: User = {
-      userID : null,
-      first_name: firstName,
-      last_name: lastName,
-      email: email,    
+      userID : this.customerUserName,
+      first_name: this.customerFirstName,
+      last_name: this.customerLastName,
+      email: this.customerEmail,    
       date_joined: null,
-      phone_number: phone,
-      password: password,
-      street: addressStreet,
-      zip: addressZip,
-      city: addressCity,
-      state: addressState,
-      country: addressCountry,
-      type_account: null
+      phone_number: this.customerPhone,
+      password: this.customerPassword,
+      street: this.customerAddressStreet,
+      zip: this.customerAddressZip,
+      city: this.customerAddressCity,
+      state: this.customerAddressState,
+      country: this.customerAddressState,
+      type_account: "customer"
     };
-    console.log("User Name:      ", userName)
-    console.log("First Name:     ", firstName);
-    console.log("Last Name:      ", lastName);
-    console.log("Email:          ", email);
-    console.log("Password:       ", password);
-    console.log("Phone:          ", phone);
-    console.log("Street Address: ", addressStreet);
-    console.log("Address City:   ", addressCity);
-    console.log("Address State:  ", addressState);
-    console.log("Address Zip:    ", addressZip);
-    console.log("Address Contry: ", addressCountry);
-    console.log("DOBDD:          ", DOBDD);
-    console.log("DOBMM:          ", DOBMM);
-    console.log("DOBYYYY:        ", DOBYYYY);
-    console.log("Gender:         ", gender);
-    console.log("CardNum:        ", cardNum);
-    console.log("CardCVC:        ", cardCVC);
-    console.log("CardExpMM:      ", cardExpMM);
-    console.log("CardExpYYYY:    ", cardExpYYYY);
-    console.log(newUser);
+
+
+  }
+
+  registerVendor(e) {
+    console.log("Vendor Name:     ", this.vendorUserName);
+    console.log("Vendor Password: ", this.vendorPassword);
+    console.log("Vendor Desc:     ", this.vendorDesc);
+
+
   }
 }

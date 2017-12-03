@@ -8,7 +8,6 @@ ul {
     overflow: hidden;
     background-color: #333;
 }
-
 li {
     float: left;
     display: block;
@@ -17,22 +16,9 @@ li {
     padding: 14px 16px;
     text-decoration: none;
 }
-
 li a:hover {
     background-color: #111;
 }
-
 input, button {
     color: black;
 }
-
-/*#carousel {
-    background: #fefcea;
-    background: -moz-linear-gradient(top, #fefcea 0%, #f1da36 40%);
-    background: -webkit-linear-gradient(top, #fefcea 0%,#f1da36 40%);
-    background: linear-gradient(to bottom, #fefcea 0%,#f1da36 40%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f1da36',GradientType=0 );
-    padding-left: 15px;
-    padding-right: 50;
-    border-spacing: 20;
-}*/
