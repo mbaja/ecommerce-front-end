@@ -23,4 +23,9 @@ export class DashboardComponent implements OnInit {
   	console.log("LOGOUT");
   	this.router.navigate(['login']);
   }
+
+  openItemPage(itemID) {
+    this.user.setSelectedItem(itemID);
+    console.log("ItemID selected:   ", itemID);
+  }
 }

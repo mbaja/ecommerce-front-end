@@ -20,6 +20,8 @@ export class UserService {
     type_account: null
   };
 
+  selectedItem:number;
+
   constructor() {
   }
 
@@ -33,6 +35,10 @@ export class UserService {
 
   getUserLoggedIn() {
   	return this.user.userID;
+  }
+
+  setSelectedItem(itemID) {
+    this.selectedItem = itemID;
   }
 
 }

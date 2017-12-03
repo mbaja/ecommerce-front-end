@@ -7,14 +7,15 @@
       <input type="text" placeholder="Search BucciBazaar" />
       <button id="search_btn">GO</button>
     </div></li>
-    <li><a href="myaccount">My Account</a></li>
-    <li><a href="bucci">About</a></li>
-    <li><a href="login">Signout</a></li>
+    <li style="float: right;"><a href="login">Signout</a></li>
+    <li style="float: right;"><a href="bucci">About Bucci</a></li>
+    <li style="float: right;"><a href="myaccount">My Account</a></li>
+    <li style="float: right;"><a href="cart">Shopping Cart</a></li>
   </ul>
 </div>
 </div>
 <!-- CAROUSEL -->
-<div id="carousel">
+<div id="carousel" id="carousel">
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner" role="listbox">
       <div class="carousel-item active">
@@ -37,11 +38,12 @@
     </a>
   </div>
 </div>
+<br>
 <!-- GRID -->
 <div *ngFor="let item of items">
 <div class="item  col-xs-4 col-lg-4 grid-group-item">
   <div class="thumbnail">
-    <img class="group list-group-image" src="assets/5.jpg" alt="" />
+    <img class="group list-group-image" src={{item.picture}} alt="" />
     <div class="caption">
       <h4 class="group inner list-group-item-heading">
         {{item.product_name}}
@@ -56,7 +58,7 @@
           </p>
         </div>
         <div class="col-xs-12 col-md-6">
-          <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+          <a class="btn btn-success" (click)="openItemPage(item.itemID)" href="item">See More</a>
         </div>
       </div>
     </div>
