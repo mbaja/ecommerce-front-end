@@ -1,20 +1,18 @@
 <!-- NAVBAR -->
 <div class="top-box">
-  <div class="navbar">
-    <ul>
-      <li><a class="active" href="dashboard"><img src="assets/favicon.ico" height="30" width="50"></a></li>
-      <li>
-        <div class="wrapper">
-          <input type="text" placeholder="Search BucciBazaar" />
-          <button id="search_btn">GO</button>
-        </div>
-      </li>
-      <li style="float: right;"><a href="login">Signout</a></li>
-      <li style="float: right;"><a href="bucci">About Bucci</a></li>
-      <li style="float: right;"><a href="myaccount">My Account</a></li>
-      <li style="float: right;"><a href="cart">Shopping Cart</a></li>
-    </ul>
-  </div>
+<div class="navbar">
+  <ul>
+    <li><a class="active" routerLink="/dashboard"><img src="assets/favicon.ico" height="30" width="50"></a></li>
+    <li><div class="wrapper">
+      <input type="text" placeholder="Search BucciBazaar" />
+      <button id="search_btn">GO</button>
+    </div></li>
+    <li style="float: right;"><a routerLink="/login">Signout</a></li>
+    <li style="float: right;"><a routerLink="/about">About Bucci</a></li>
+    <li style="float: right;"><a routerLink="/myaccount">My Account</a></li>
+    <li style="float: right;"><a routerLink="/cart">Shopping Cart</a></li>
+  </ul>
+</div>
 </div>
 <!-- BODY -->
 <div id="a">

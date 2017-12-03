@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
-import { INVENTORY } from '../objects/mock-items';
+import { INVENTORY } from '../objects/mock-items';    // HARDCODED VALUES TO BE DELETED
 
 @Component({
   selector: 'app-dashboard',
