@@ -20,9 +20,10 @@ export class UserService {
     type_account: null
   };
 
-  selectedItem:number;
+  private selectedItem;
 
   constructor() {
+    this.selectedItem = 0;
   }
 
   setUserLoggedIn( user ) {
@@ -39,6 +40,10 @@ export class UserService {
 
   setSelectedItem(itemID) {
     this.selectedItem = itemID;
+    console.log("Service value: ", this.selectedItem);
   }
 
+  getSelectedItem() {
+    return this.selectedItem;
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
-import { INVENTORY } from './mock-items';
+import { INVENTORY } from '../objects/mock-items';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,6 +26,6 @@ export class DashboardComponent implements OnInit {
 
   openItemPage(itemID) {
     this.user.setSelectedItem(itemID);
-    console.log("ItemID selected:   ", itemID);
+    console.log("Dashboard Value:   ", itemID);
   }
 }

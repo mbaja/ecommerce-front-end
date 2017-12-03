@@ -2,7 +2,7 @@
 <div class="top-box">
 <div class="navbar">
   <ul>
-    <li><a class="active" href="#dashboard"><img src="assets/favicon.ico" height="30" width="50"></a></li>
+    <li><a class="active" href="dashboard"><img src="assets/favicon.ico" height="30" width="50"></a></li>
     <li><div class="wrapper">
       <input type="text" placeholder="Search BucciBazaar" />
       <button id="search_btn">GO</button>
@@ -58,7 +58,7 @@
           </p>
         </div>
         <div class="col-xs-12 col-md-6">
-          <a class="btn btn-success" (click)="openItemPage(item.itemID)" href="item">See More</a>
+          <a class="btn btn-success" (click)="openItemPage(item.itemID)" routerLink="/item">See More</a>
         </div>
       </div>
     </div>
