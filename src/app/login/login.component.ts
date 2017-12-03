@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
       }
     }
     if(!foundUser) {
-      alert("username password combination found");    
+      alert("username password combination found");   
+    } 
   }
 }
