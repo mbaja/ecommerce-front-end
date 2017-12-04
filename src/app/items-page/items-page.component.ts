@@ -22,18 +22,17 @@ export class ItemsPageComponent implements OnInit {
 	  console.log(i.itemID);
 	  if(i.itemID == this.user.getSelectedItem()) {
 	    this.item = {
-		  price:        i.price,
-		  product_name: i.product_name,
-		  type:         i.type,
-		  itemID:       i.itemID,
-		  product_desc: i.product_desc,
-		  quantity:     i.quantity,    
-		  picture:      i.picture
-  	    };
-	  }
+		    price:        i.price,
+		    product_name: i.product_name,
+		    type:         i.type,
+		    itemID:       i.itemID,
+		    product_desc: i.product_desc,
+		    quantity:     i.quantity,    
+		    picture:      i.picture
+  	  };
+	    }
   	}
   	console.log("Selected Item: ", this.user.getSelectedItem());
-  	
   }
 
   addQuantity() {

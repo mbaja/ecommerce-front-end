@@ -15,6 +15,7 @@ import { BucciComponent } from './bucci/bucci.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const appRoutes:Routes = [
   {
@@ -66,6 +67,7 @@ const appRoutes:Routes = [
     CheckoutComponent,
     BucciComponent,
     MyaccountComponent,
+    NavbarComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

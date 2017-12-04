@@ -1,19 +1,4 @@
-<!-- NAVBAR -->
-<div class="top-box">
-<div class="navbar">
-  <ul>
-    <li><a class="active" routerLink="/dashboard"><img src="assets/favicon.ico" height="30" width="50"></a></li>
-    <li><div class="wrapper">
-      <input type="text" placeholder="Search BucciBazaar" />
-      <button id="search_btn">GO</button>
-    </div></li>
-    <li style="float: right;"><a routerLink="/login">Signout</a></li>
-    <li style="float: right;"><a routerLink="/about">About Bucci</a></li>
-    <li style="float: right;"><a routerLink="/myaccount">My Account</a></li>
-    <li style="float: right;"><a routerLink="/cart">Shopping Cart</a></li>
-  </ul>
-</div>
-</div>
+<app-navbar></app-navbar>
 <!-- BODY -->
 <div id="a">
   <div class="container">
@@ -40,9 +25,7 @@
       <div class="col-xs-9">
         <div style="width:100%;border-top:1px solid silver">
           <p style="padding:15px;">
-            <small>
-            {{item.product_desc}}
-            </small>
+            <small>{{item.product_desc}}</small>
           </p>
         </div>
       </div>

@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { User } from './objects/user';
 
+import { USERS } from './objects/mock-users';    // HARDCODED VALUES TO BE DELETED
+
 @Injectable()
 export class UserService {
 
-   private user: User = {
+  users = USERS;
+  private user: User = {
     userID : null,
     first_name: null,
     last_name: null,
@@ -28,6 +31,11 @@ export class UserService {
 
   setUserLoggedIn( user ) {
   	this.user.userID = user;
+    for(let i of this.users) {
+      if(i.userID == user) {
+        this.user.type_account = i.type_account
+      }
+    }
   }
 
   getUser() {
