@@ -55,18 +55,13 @@ export class ShoppingCartComponent implements OnInit {
   continueShopping() {
     console.log("continue shopping pressed")
     this.saveCart();
+    this.user.setShowMessage("Shopping Cart Saved!");
     this.router.navigate(['/dashboard']);
   }
 
   checkout() {
     console.log("checkout pressed");
-    this.flashMessage.success('Shopping Cart Saved', {
-        delay: 20000,
-        cssClass: 'success-class', 
-        // close: true, 
-        // closeBtnClass: 'class1 class2', 
-        // navigate: 'you-url',
-    });
+    this.router.navigate(['/checkout']);
   };
 
   sumTotal() {
@@ -83,6 +78,7 @@ export class ShoppingCartComponent implements OnInit {
 
   deleteItem( itemID ) {
     console.log(itemID);
+    // code to delete the item
     this.router.navigate(['/cart']);
   }
 

@@ -25,10 +25,12 @@ export class UserService {
 
   private selectedItem;
   private reviewItem;
+  private showMessage;
 
   constructor() {
     this.selectedItem = 0;
     this.reviewItem = 0;
+    this.showMessage = "";
   }
 
   setUserLoggedIn( user ) {
@@ -38,6 +40,15 @@ export class UserService {
         this.user.type_account = i.type_account
       }
     }
+  }
+
+  setShowMessage( message ) {
+    this.showMessage = message;
+    console.log("User showMessage set as: ", this.showMessage);
+  }
+
+  getShowMessage() {
+    return this.showMessage;
   }
 
   getUser() {

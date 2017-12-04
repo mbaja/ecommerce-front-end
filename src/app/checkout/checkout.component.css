@@ -1,15 +1,18 @@
-.container-fluid {
+/*.container-fluid {
 	background-image: none;
 	background-color: coral;
-}
+}*/
 .dl-small {
   margin-bottom: 4px;
 }
 
-body {
+form {
   margin: 0 auto;
   padding: 1em;
-  max-width: 800px;
+  width: 70%;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
 }
 
 .form-control {
@@ -17,10 +20,18 @@ body {
 }
 
 .form-control-small {
-  width: 100px;
+  width: 80%;
 }
 
 .form-control-large {
-  width: 310px;
+  width: 80%;
 }
 
+.list-group {
+	color:black;
+	background-color: #585858;
+}
+
+#newAddressForm {
+  width: 80%;
+}

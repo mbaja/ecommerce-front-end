@@ -4,3 +4,9 @@
     width: 90%;
     margin: auto;
 }
+
+#flash-message {
+  width: 60%;
+  margin: auto;
+  align-self: center;
+}

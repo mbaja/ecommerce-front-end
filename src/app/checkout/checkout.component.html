@@ -1,6 +1,5 @@
-
-
 <body>
+<app-navbar></app-navbar>
 <form (submit)="placeOrder($event)">
   <div class="container-fluid">
     <div class="page-header">
@@ -12,16 +11,16 @@
         <div class="list-group">
           <div class="list-group-item">
             <div class="list-group-item-heading">
-              <div class="row radio">
+              <div class="row radio" style="text-align: center;">
                 <div class="col-xs-3">
                   <label>
                   <input type="radio" name="optionShipp" id="optionShipp1" value="option2" checked="false">
-                  <span id="hard-address-street">1509 Latona St</span>
+                  <span id="hard-address-street"><h3>1509 Latona St</h3></span>
                   </label>
                 </div>
                 <div class="col-xs-5">
                   <dl class="dl-small">
-                    <dt>Miguel Perez</dt>
+                    <dt><h4>Miguel Perez</h4></dt>
                     <dd>1509 Latona St, Philadelphia, PA 19146 </dd>
                   </dl>
                   <button class="btn btn-sm">Edit</button>
@@ -42,7 +41,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9">
-                  <form role="form" class="">
+                  <form id="newAddressForm" role="form" class="">
                     <div class="form-group">
                       <label for="inputname">Name</label>
                       <input type="text" class="form-control form-control-large" id="inputname" placeholder="Enter name">
@@ -72,7 +71,7 @@
                     <div class="form-group">
                       <label for="inputState" class="control-label">State</label>
                       <select class="form-control form-control-large">
-                        <option>Select state</option>
+                        <input type="text" class="form-control" id="inputCity" placeholder="Enter city">
                       </select>
                     </div>
                   </form>
