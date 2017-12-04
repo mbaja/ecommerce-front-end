@@ -87,3 +87,8 @@
 .container .info span .fa {
   color: #EF3B3A;
 }
+#flash-message {
+    width: 60%;
+    margin: auto;
+    align-self: center;
+}

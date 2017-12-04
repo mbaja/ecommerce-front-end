@@ -15,6 +15,7 @@ import { BucciComponent } from './bucci/bucci.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ReviewComponent } from './review/review.component';
+import { FlashMessageModule } from 'angular-flash-message';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -79,7 +80,8 @@ const appRoutes:Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlashMessageModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

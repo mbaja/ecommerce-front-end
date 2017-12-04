@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../objects/user';
 import { UserService } from '../user.service';
 import { Cart } from '../objects/cart';
+import { FlashMessage } from 'angular-flash-message';
 
 import { SHOPPING_CART } from '../objects/mock-cart';    // HARDCODED VALUES TO BE DELETED
 import { INVENTORY } from '../objects/mock-items';		   // HARDCODED VALUES TO BE DELETED
@@ -17,7 +18,7 @@ export class ShoppingCartComponent implements OnInit {
   shopping_cart = SHOPPING_CART;
   customers:number;
 
-  constructor(private router:Router, private user:UserService) { }
+  constructor(private router:Router, private user:UserService, private flashMessage:FlashMessage) { }
 
   ngOnInit() {
   	var user = this.user.getUserLoggedIn();
@@ -49,5 +50,44 @@ export class ShoppingCartComponent implements OnInit {
   	console.log("Price found is: ", price);
   	// var itemQuantity = <HTMLInputElement>document.getElementById("someQuantityy").value;
   	return price*itemQuantity
+  }
+
+  continueShopping() {
+    console.log("continue shopping pressed")
+    this.saveCart();
+    this.router.navigate(['/dashboard']);
+  }
+
+  checkout() {
+    console.log("checkout pressed");
+    this.flashMessage.success('Shopping Cart Saved', {
+        delay: 20000,
+        cssClass: 'success-class', 
+        // close: true, 
+        // closeBtnClass: 'class1 class2', 
+        // navigate: 'you-url',
+    });
+  };
+
+  sumTotal() {
+    var total = 0.0;
+    var array = this.shopping_cart;
+    for (var i = 0; i<array.length; i++) {
+      var element = array[i];
+      var elementPrice = this.getProductPrice(element.itemID);
+      var elementQuantity = element.quantity;
+      total += elementPrice * elementQuantity;
+    }
+    return total
+  }
+
+  deleteItem( itemID ) {
+    console.log(itemID);
+    this.router.navigate(['/cart']);
+  }
+
+  // USE THIS TO SAVE THE CART AFTER OR BEFORE EXITING
+  saveCart() {
+
   }
 }

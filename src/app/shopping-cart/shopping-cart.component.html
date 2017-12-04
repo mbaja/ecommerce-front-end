@@ -1,18 +1,21 @@
 <app-navbar></app-navbar>
+<div id="flash-message">
+  <flash-message></flash-message>
+</div>
 <!-- LIST OF CART -->
 	<div class="container" id="a">
-		<table id="cart" class="table table-hover table-condensed">
+		<table id="cart" class="table table-condensed">
 			<thead>
 				<tr>
-					<th style="width:50%">Product</th>
-					<th style="width:10%">Price</th>
-					<th style="width:8%">Quantity</th>
-					<th style="width:22%" class="text-center">Subtotal</th>
+					<th style="width:50%"><h4>Product</h4></th>
+					<th style="width:10%"><h4>Price</h4></th>
+					<th style="width:8%"><h4>Quantity</h4></th>
+					<th style="width:22%" class="text-center"><h4>Subtotal</h4></th>
 					<th style="width:10%"></th>
 				</tr>
 			</thead>
 			<tbody>
-		<tr *ngFor="let item of shopping_cart">
+		<tr class="listItem" *ngFor="let item of shopping_cart">
 				<td data-th="Product">
 					<div class="row">
 						<div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
@@ -23,24 +26,24 @@
 				</td>
 				<td data-th="Price">${{getProductPrice(item.itemID)}}</td>
 				<td data-th="Quantity">
-					<input id="someQuantityy" ng-model="quant" type="number" class="form-control text-center" value={{item.quantity}} max="20" min="1"> 
+					<input id="someQuantityy" ng-model="quant" type="number" class="form-control text-center" max="20" min="1" [(ngModel)]="item.quantity"> 
 				</td>
-				<td data-th="Subtotal" class="text-center">${{quant}}</td>
+				<td data-th="Subtotal" class="text-center">$ {{item.quantity * getProductPrice(item.itemID) | number : '1.2-2'}}</td>
 				<td class="actions" data-th="">
-					<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>Delete</button>								
+					<button class="btn btn-danger btn-sm" (click)="deleteItem(item.itemID)"><i class="fa fa-trash-o"></i>Delete</button>								
 				</td>
 			</tr>
 		</tbody>
 		
 		<tfoot>
-			<tr class="visible-xs">
-				<td class="text-center"><strong>Total 1.99</strong></td>
-			</tr>
+			<!-- <tr class="visible-xs">
+				<td class="text-center"><strong>Total ${{sumTotal()}}</strong></td>
+			</tr> -->
 			<tr>
-				<td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+				<td><a class="btn btn-warning" (click)="continueShopping()"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 				<td colspan="2" class="hidden-xs"></td>
-				<td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-				<td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+				<td class="hidden-xs text-center"><strong>Total ${{sumTotal() | number : '1.2-2'}}</strong></td>
+				<td><a class="btn btn-success btn-block" (click)="checkout()">Checkout <i class="fa fa-angle-right"></i></a></td>
 			</tr>
 		</tfoot>
 	</table>

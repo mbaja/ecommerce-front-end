@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { User } from '../objects/user';
+import { FlashMessage } from 'angular-flash-message';
+
 import { USERS } from '../objects/mock-users';    // HARDCODED VALUES TO BE DELETED
 
 @Component({
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   users = USERS;
 
-  constructor(private router:Router, private user:UserService) { }
+  constructor(private router:Router, private user:UserService, private flashMessage:FlashMessage) { }
 
   ngOnInit() {
   }
@@ -33,7 +35,10 @@ export class LoginComponent implements OnInit {
       }
     }
     if(!foundUser) {
-      alert("username password combination found");   
+      this.flashMessage.danger('Not a valid user!', {
+        delay: 5000,
+        cssClass: 'success-class', 
+    });
     } 
   }
 }

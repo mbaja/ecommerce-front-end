@@ -24,9 +24,11 @@ export class UserService {
   };
 
   private selectedItem;
+  private reviewItem;
 
   constructor() {
     this.selectedItem = 0;
+    this.reviewItem = 0;
   }
 
   setUserLoggedIn( user ) {
@@ -46,12 +48,21 @@ export class UserService {
   	return this.user.userID;
   }
 
-  setSelectedItem(itemID) {
+  setSelectedItem( itemID ) {
     this.selectedItem = itemID;
-    console.log("Service value: ", this.selectedItem);
+    console.log("Service selectedItem: ", this.selectedItem);
+  }
+
+  setReviewItem( itemID ) {
+    this.reviewItem = itemID;
+    console.log("Service reviewItem: ", this.reviewItem);
   }
 
   getSelectedItem() {
     return this.selectedItem;
+  }
+
+  getReviewItem() {
+    return this.reviewItem;
   }
 }
