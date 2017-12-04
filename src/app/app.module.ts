@@ -13,11 +13,16 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { UserService } from './user.service';
 import { BucciComponent } from './bucci/bucci.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ReviewComponent } from './review/review.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './navbar/navbar.component';
 
 const appRoutes:Routes = [
+  {
+    path: '',
+    component: LoginComponent,
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -29,10 +34,6 @@ const appRoutes:Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-  },
-  {
-    path: '',
-    component: LoginComponent,
   },
   {
     path: 'item',
@@ -53,6 +54,10 @@ const appRoutes:Routes = [
   {
     path: 'bucci',
     component: BucciComponent
+  },
+  {
+    path: 'review',
+    component: ReviewComponent
   }
 ];
 
@@ -68,6 +73,7 @@ const appRoutes:Routes = [
     BucciComponent,
     MyaccountComponent,
     NavbarComponent,
+    ReviewComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
