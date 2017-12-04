@@ -5,7 +5,7 @@ import { UserService } from '../user.service';
 import { Cart } from '../objects/cart';
 
 import { SHOPPING_CART } from '../objects/mock-cart';    // HARDCODED VALUES TO BE DELETED
-import { INVENTORY } from '../objects/mock-items';		 // HARDCODED VALUES TO BE DELETED
+import { INVENTORY } from '../objects/mock-items';		   // HARDCODED VALUES TO BE DELETED
 
 @Component({
   selector: 'app-shopping-cart',

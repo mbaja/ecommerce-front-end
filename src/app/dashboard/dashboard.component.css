@@ -1,4 +1,6 @@
 #carousel {
     background-color: #333;
     border-radius: 5px;
+    width: 90%;
+    margin: auto;
 }

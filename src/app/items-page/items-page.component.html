@@ -32,4 +32,13 @@
     </div>
   </div>
 </div>
+<div id="card-block" class="card-block">
+  <h3>Reviews</h3>
+  <div class="card" id="card" *ngFor="let review of reviews">
+    <p><br>" {{review.text}} "</p>
+    <img src="assets/{{review.rating}}stars.png">
+    <h6> - {{review.customerID}}</h6>
+  </div>
+</div>
+
 

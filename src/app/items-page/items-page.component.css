@@ -67,10 +67,22 @@ li:hover {
 input, button {
     color: black;
 }
-#carousel {
-    background-color: #333;
+#card {
+    background-color: #585858;
     border-radius: 5px;
 }
 h3, h5, small {
     color: white;
+}
+
+#card-block {
+    margin: auto;
+    background-color: #333;
+    border-radius: 10px;
+    width: 70%;
+    color: white;
+}
+img {
+    width: 15%;
+    height: 50%;
 }

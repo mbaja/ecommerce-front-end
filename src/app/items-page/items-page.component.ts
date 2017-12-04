@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Item } from "../objects/item";
-import { INVENTORY } from '../objects/mock-items';
+import { Review } from "../objects/review";
+
+import { INVENTORY } from '../objects/mock-items';    // HARDCODED VALUES TO BE DELETED
+import { BUCCIREVIEWS } from '../objects/mock-reviews'// HARDCODED VALUES TO BE DELETED
 
 @Component({
   selector: 'app-items-page',
@@ -15,6 +18,7 @@ export class ItemsPageComponent implements OnInit {
   itemQuantity:number = 0;
   item: Item;
   inv:Item[]=INVENTORY;
+  reviews = BUCCIREVIEWS;
 
   ngOnInit() {
   	// loop and find item
@@ -47,4 +51,14 @@ export class ItemsPageComponent implements OnInit {
   	}
   }
 
+  makeStars( review ) {
+    var stars: number[] = [];
+    var rating = review.rating;
+    var count = 0;
+    while(count < review.rating) {
+      stars.push(0);
+      count += 1;
+    }
+    return stars
+  }
 }
