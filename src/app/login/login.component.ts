@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }), withCredentials: true }).subscribe(data => {
-      console.log(data);
+      console.log("Login data", data);
       this.router.navigate(['/dashboard']);
       this.user.setShowMessage('Login Successful');
     }, (err: HttpErrorResponse) => {

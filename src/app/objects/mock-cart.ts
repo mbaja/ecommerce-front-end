@@ -1,7 +1,7 @@
 import { Cart } from './cart';
 
 export const SHOPPING_CART: Cart[] = [
-  { itemID:       123,
+  /*{ itemID:       123,
     customerID:   "BigBucciBaller",
     quantity:     1,
     cartID:       1
@@ -40,5 +40,5 @@ export const SHOPPING_CART: Cart[] = [
     customerID:   "TommySalami",
     quantity:     1,
     cartID:       8
-  },
+  },*/
 ];

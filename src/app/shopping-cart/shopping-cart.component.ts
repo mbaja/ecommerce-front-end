@@ -4,9 +4,10 @@ import { User } from '../objects/user';
 import { UserService } from '../user.service';
 import { Cart } from '../objects/cart';
 import { FlashMessage } from 'angular-flash-message';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
-import { SHOPPING_CART } from '../objects/mock-cart';    // HARDCODED VALUES TO BE DELETED
-import { INVENTORY } from '../objects/mock-items';		   // HARDCODED VALUES TO BE DELETED
+//import { SHOPPING_CART } from '../objects/mock-cart';    // HARDCODED VALUES TO BE DELETED
+//import { INVENTORY } from '../objects/mock-items';		   // HARDCODED VALUES TO BE DELETED
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,23 +16,59 @@ import { INVENTORY } from '../objects/mock-items';		   // HARDCODED VALUES TO BE
 })
 export class ShoppingCartComponent implements OnInit {
 
-  shopping_cart = SHOPPING_CART;
+  shopping_cart;
   customers:number;
+  total;
 
-  constructor(private router:Router, private user:UserService, private flashMessage:FlashMessage) { }
+  constructor(private router:Router, private user:UserService, private flashMessage:FlashMessage, private http : HttpClient) { }
 
   ngOnInit() {
-  	var user = this.user.getUserLoggedIn();
-    console.log("Cart User: ", user);
+  	//var user = this.user.getUserLoggedIn();
+    //console.log("Cart User: ", user);
+
+    this.http.get('http://localhost:3000/cart', { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Cart Data", data);
+      this.shopping_cart = data;
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        this.flashMessage.danger('Invalid login.', {delay : 3000});
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        this.flashMessage.danger('Invalid login.', {delay : 3000});
+      }
+    }); 
   }
 
   getProductName( itemID ) {
-  	for(let item of INVENTORY) {
+  	/*for(let item of INVENTORY) {
   		if (item.ItemID == itemID) {
   			return item.Product_Name
   		}
-  	}
-  	return "ERROR: BUCCI ITEM NOT FOUND"
+  	}*/
+    this.http.get('http://localhost:3000/items/' + itemID).subscribe(data => {
+      return data['Product_Name'];
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        this.flashMessage.danger('Invalid request.', {delay : 3000});
+        return "None";
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        this.flashMessage.danger('Invalid request.', {delay : 3000});
+        return "None";
+      }
+    });
   } 
 
   getProductPrice( itemID ) : number {
@@ -49,7 +86,11 @@ export class ShoppingCartComponent implements OnInit {
   	var price = this.getProductPrice(itemID);
   	console.log("Price found is: ", price);
   	// var itemQuantity = <HTMLInputElement>document.getElementById("someQuantityy").value;
-  	return price*itemQuantity
+  	return price*itemQuantity;
+  }
+
+  sumTotal2()  {
+
   }
 
   continueShopping() {
@@ -65,7 +106,7 @@ export class ShoppingCartComponent implements OnInit {
   };
 
   sumTotal() {
-    var total = 0.0;
+/*    var total = 0.0;
     var array = this.shopping_cart;
     for (var i = 0; i<array.length; i++) {
       var element = array[i];
@@ -73,7 +114,44 @@ export class ShoppingCartComponent implements OnInit {
       var elementQuantity = element.quantity;
       total += elementPrice * elementQuantity;
     }
-    return total
+    return total*/
+
+    /*this.http.get('http://localhost:3000/cart', { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      
+      var total = 0;
+      for (let item of <Object[]>data)  {
+        total += item['Item'].Price * item['Cart'].Quantity;
+      }
+
+      console.log(total);
+
+      this.total = total;
+      
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        this.flashMessage.danger('Invalid login.', {delay : 3000});
+        this.total = 0;
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        this.flashMessage.danger('Invalid login.', {delay : 3000});
+        this.total = 0;
+      }
+    }); */
+
+    var total = 0.0;
+    for (let item of this.shopping_cart)  {
+      total += item['Item'].Price * item['Cart'].Quantity;
+    }
+
+    return total;
   }
 
   deleteItem( itemID ) {

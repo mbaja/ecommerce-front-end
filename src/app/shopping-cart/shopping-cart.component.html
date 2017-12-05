@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div id="flash-message">
   <flash-message></flash-message>
-</div>
+</div >
 <!-- LIST OF CART -->
 	<div class="container" id="a">
 		<table id="cart" class="table table-condensed">
@@ -18,27 +18,27 @@
 		<tr class="listItem" *ngFor="let item of shopping_cart">
 				<td data-th="Product">
 					<div class="row">
-						<div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+						<div class="col-sm-2 hidden-xs"><img src="{{item.Item.Picture}}" alt="..." class="img-responsive"/></div>
 						<div class="col-sm-10">
-							<h4 class="nomargin">{{getProductName(item.itemID)}}</h4>
+							<h4 class="nomargin">{{item.Item.Product_Name}}</h4>
 						</div>
 					</div>
 				</td>
-				<td data-th="Price">${{getProductPrice(item.itemID)}}</td>
+				<td data-th="Price">${{item.Item.Price}}</td>
 				<td data-th="Quantity">
-					<input id="someQuantityy" ng-model="quant" type="number" class="form-control text-center" max="20" min="1" [(ngModel)]="item.quantity"> 
+					<input id="someQuantityy" ng-model="quant" type="number" class="form-control text-center" max="20" min="1" [(ngModel)]="item.Cart.Quantity"> 
 				</td>
-				<td data-th="Subtotal" class="text-center">$ {{item.quantity * getProductPrice(item.itemID) | number : '1.2-2'}}</td>
+				<td data-th="Subtotal" class="text-center">$ {{item.Cart.Quantity * item.Item.Price | number : '1.2-2'}}</td>
 				<td class="actions" data-th="">
-					<button class="btn btn-danger btn-sm" (click)="deleteItem(item.itemID)"><i class="fa fa-trash-o"></i>Delete</button>								
+					<button class="btn btn-danger btn-sm" ><i class="fa fa-trash-o"></i>Delete</button>								
 				</td>
 			</tr>
 		</tbody>
+
+		<!-- (click)="deleteItem(item.ItemID)" -->
+		<!-- http://placehold.it/100x100 -->
 		
 		<tfoot>
-			<!-- <tr class="visible-xs">
-				<td class="text-center"><strong>Total ${{sumTotal()}}</strong></td>
-			</tr> -->
 			<tr>
 				<td><a class="btn btn-warning" (click)="continueShopping()"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 				<td colspan="2" class="hidden-xs"></td>
