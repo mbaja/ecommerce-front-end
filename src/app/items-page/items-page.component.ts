@@ -8,6 +8,8 @@ import { Review } from "../objects/review";
 
 import { HttpClient } from '@angular/common/http';
 
+import {ActivatedRoute} from "@angular/router";
+
 @Component({
   selector: 'app-items-page',
   templateUrl: './items-page.component.html',
@@ -15,19 +17,24 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ItemsPageComponent implements OnInit {
 
-  constructor(private user:UserService, private http : HttpClient) { }
+  constructor(private user:UserService, private http : HttpClient, private route : ActivatedRoute) { }
 
   itemQuantity:number = 0;
   item;
   //inv:Item[]=INVENTORY;
   //reviews = BUCCIREVIEWS;
-  reviews : Review[];
+  //reviews : Review[];
 
   ngOnInit() {
 
-    this.http.get('http://localhost:3000/items/' + this.user.getSelectedItem()).subscribe(data => {
-      this.item = data;
+    console.log(this.user.getSelectedItem());
+
+    this.route.params.subscribe( params => {
+        this.http.get('http://localhost:3000/items/' + params['id']).subscribe(data => {
+        this.item = data;
+      });
     });
+    
 
   	// loop and find item
 /*  	for (let i of this.inv) {

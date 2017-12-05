@@ -37,7 +37,7 @@ const appRoutes:Routes = [
     component: DashboardComponent,
   },
   {
-    path: 'item',
+    path: 'item/:id',
     component: ItemsPageComponent
   },
   {
