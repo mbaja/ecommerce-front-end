@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../objects/user';
+import { Vendor } from '../objects/vendor';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -34,7 +35,7 @@ export class RegisterComponent implements OnInit {
   vendorAddressState:string;
   vendorAddressZip:number;
   vendorAddressCountry:string;
-  vendorDesc:string;
+  vendorStoreDesc:string;
 
 
 //<<<<<<< HEAD
@@ -118,6 +119,23 @@ export class RegisterComponent implements OnInit {
     console.log("vendorAddressState:   ", this.vendorAddressState);
     console.log("vendorAddressZip:     ", this.vendorAddressZip);
     console.log("vendorAddressCountry: ", this.vendorAddressCountry);
-    console.log("Vendor Desc:          ", this.vendorDesc);
+    console.log("Vendor Desc:          ", this.vendorStoreDesc);
+
+    var newVendor: Vendor = {
+      userid : this.vendorUserName,
+      first_name: this.vendorFirstName,
+      last_name: this.vendorLastName,
+      email: this.vendorEmail,
+      phone: this.vendorPhone,
+      password: this.vendorPassword,
+      address: this.vendorAddressStreet,
+      zip: this.vendorAddressZip,
+      city: this.vendorAddressCity,
+      state: this.vendorAddressState,
+      country: this.vendorAddressState,
+      type: "Vendor",
+      store_name: this.vendorStoreName,
+      store_desc: this.vendorStoreDesc
+    };
   }
 }
