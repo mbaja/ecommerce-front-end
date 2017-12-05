@@ -1,7 +1,7 @@
 import { Item } from './item';
 
-/*export const INVENTORY: Item[] = [
-  { price:        12.15,
+export const INVENTORY: Item[] = [
+  /*{ price:        12.15,
     product_name: "bucci shirt",
     type:         "clothing",
     itemID:       123,
@@ -48,5 +48,5 @@ import { Item } from './item';
     product_desc: "Bucci Toe for the foinest toe things",
     quantity:     10,        
     picture:      "assets/4.jpg"
-  }
-];*/
+  }*/
+];

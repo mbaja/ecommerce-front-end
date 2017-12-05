@@ -20,7 +20,7 @@ export class ReviewComponent implements OnInit {
   constructor(private router:Router, private user:UserService) { }
 
   ngOnInit() {
-    this.textReview = "";
+    /*this.textReview = "";
   	this.starRating = 1;
     this.reviewItem = this.user.getReviewItem();
     console.log("Review reviewItem: ", this.reviewItem);
@@ -40,7 +40,7 @@ export class ReviewComponent implements OnInit {
         return
       }
     }
-    console.log("Item Not Found");
+    console.log("Item Not Found");*/
   }
 
   submitReview() {

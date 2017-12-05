@@ -3,8 +3,10 @@ import { UserService } from '../user.service';
 import { Item } from "../objects/item";
 import { Review } from "../objects/review";
 
-import { INVENTORY } from '../objects/mock-items';    // HARDCODED VALUES TO BE DELETED
-import { BUCCIREVIEWS } from '../objects/mock-reviews'// HARDCODED VALUES TO BE DELETED
+//import { INVENTORY } from '../objects/mock-items';    // HARDCODED VALUES TO BE DELETED
+//import { BUCCIREVIEWS } from '../objects/mock-reviews'// HARDCODED VALUES TO BE DELETED
+
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-items-page',
@@ -13,16 +15,22 @@ import { BUCCIREVIEWS } from '../objects/mock-reviews'// HARDCODED VALUES TO BE 
 })
 export class ItemsPageComponent implements OnInit {
 
-  constructor(private user:UserService) { }
+  constructor(private user:UserService, private http : HttpClient) { }
 
   itemQuantity:number = 0;
-  item: Item;
-  inv:Item[]=INVENTORY;
-  reviews = BUCCIREVIEWS;
+  item;
+  //inv:Item[]=INVENTORY;
+  //reviews = BUCCIREVIEWS;
+  reviews : Review[];
 
   ngOnInit() {
+
+    this.http.get('http://localhost:3000/items/' + this.user.getSelectedItem()).subscribe(data => {
+      this.item = data;
+    });
+
   	// loop and find item
-  	for (let i of this.inv) {
+/*  	for (let i of this.inv) {
 	  console.log(i.itemID);
 	  if(i.itemID == this.user.getSelectedItem()) {
 	    this.item = {
@@ -36,11 +44,13 @@ export class ItemsPageComponent implements OnInit {
   	  };
 	    }
   	}
-  	console.log("Selected Item: ", this.user.getSelectedItem());
+  	console.log("Selected Item: ", this.user.getSelectedItem());*/
+
+
   }
 
   addQuantity() {
-  	if(this.item.quantity != this.itemQuantity){
+  	if(this.item.Quantity != this.itemQuantity){
   	  this.itemQuantity += 1;	
   	}
   }

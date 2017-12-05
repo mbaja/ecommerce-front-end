@@ -27,8 +27,8 @@ export class ShoppingCartComponent implements OnInit {
 
   getProductName( itemID ) {
   	for(let item of INVENTORY) {
-  		if (item.itemID == itemID) {
-  			return item.product_name
+  		if (item.ItemID == itemID) {
+  			return item.Product_Name
   		}
   	}
   	return "ERROR: BUCCI ITEM NOT FOUND"

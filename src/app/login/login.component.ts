@@ -4,9 +4,9 @@ import { UserService } from '../user.service';
 import { User } from '../objects/user';
 import { FlashMessage } from 'angular-flash-message';
 
-import { USERS } from '../objects/mock-users';    // HARDCODED VALUES TO BE DELETED
+//import { USERS } from '../objects/mock-users';    // HARDCODED VALUES TO BE DELETED
 
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  users = USERS;
+  //users = USERS;
 
   constructor(private router:Router, private user:UserService, private flashMessage:FlashMessage, private http: HttpClient) { }
 
@@ -43,9 +43,13 @@ export class LoginComponent implements OnInit {
     });
     } */
 
-    this.http.post('http://localhost:3000/login', {username : username, password : password}).subscribe(data => {
+    this.http.post('http://localhost:3000/login', {username : username, password : password}, { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
       console.log(data);
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['/dashboard']);
       this.user.setShowMessage('Login Successful');
     }, (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {

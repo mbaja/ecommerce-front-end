@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
     this.http.get('http://localhost:3000/items').subscribe(data => {
 
       this.raw_items = data;
+      
     });
 
 /*    this.items = Array();

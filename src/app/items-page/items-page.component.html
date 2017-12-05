@@ -4,12 +4,12 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-4 item-photo">
-        <img style="max-width:100%;" src={{item.picture}} />
+        <img style="max-width:100%;" src={{item.item_desc.Picture}} />
       </div>
       <div class="col-xs-5" style="border:0px solid gray">
-        <h3>{{item.product_name | uppercase}}</h3>
-        <h5 style="color:#337ab7">Quantity  left {{item.quantity}}</h5>
-        <h3 style="margin-top:0px;">$ {{item.price}}</h3>
+        <h3>{{item.item_desc.Product_Name | uppercase}}</h3>
+        <h5 style="color:#337ab7">Quantity  left {{item.item_desc.Quantity}}</h5>
+        <h3 style="margin-top:0px;">$ {{item.item_desc.Price}}</h3>
         <div class="section" style="padding-bottom:20px;">
           <h6 class="title-attr"><small>Quantity</small></h6>
           <div>
@@ -25,7 +25,7 @@
       <div class="col-xs-9">
         <div style="width:100%;border-top:1px solid silver">
           <p style="padding:15px;">
-            <small>{{item.product_desc}}</small>
+            <small>{{item.item_desc.Product_Desc}}</small>
           </p>
         </div>
       </div>
@@ -34,10 +34,10 @@
 </div>
 <div id="card-block" class="card-block">
   <h3>Reviews</h3>
-  <div class="card" id="card" *ngFor="let review of reviews">
-    <p><br>" {{review.text}} "</p>
-    <img src="assets/{{review.rating}}stars.png">
-    <h6> - {{review.customerID}}</h6>
+  <div class="card" id="card" *ngFor="let review of item.reviews">
+    <p><br>" {{review.Text}} "</p>
+    <img src="assets/{{review.Rating}}stars.png">
+    <h6> - {{review.CustomerID}}</h6>
   </div>
 </div>
 

@@ -1,7 +1,7 @@
 import { User } from './user';
 
 export const USERS: User[] = [
-  {
+ /* {
     userid:      "BigBucciBaller",       // string VARCHAR(50) NOT NULL
     first_name:  "Lavar",                // string VARCHAR(50) NULL,
     last_name:   "Ball",                 // string VARCHAR(50) NULL,
@@ -60,6 +60,6 @@ export const USERS: User[] = [
     state:        "CA",                  // string CHAR(2) NULL
     country:      "USA",                 // string VARCHAR(50) NULL,
     type: "vendor"               // string VARCHAR(10) NULL COMMENT 'Either \'Admin\', \'Customer\', or \'Vendor\''
-  }
+  }*/
 
 ];
