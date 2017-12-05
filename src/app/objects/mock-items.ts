@@ -1,6 +1,6 @@
 import { Item } from './item';
 
-export const INVENTORY: Item[] = [
+/*export const INVENTORY: Item[] = [
   { price:        12.15,
     product_name: "bucci shirt",
     type:         "clothing",
@@ -49,4 +49,4 @@ export const INVENTORY: Item[] = [
     quantity:     10,        
     picture:      "assets/4.jpg"
   }
-];
+];*/

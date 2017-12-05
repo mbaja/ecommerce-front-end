@@ -35,13 +35,13 @@ export class ShoppingCartComponent implements OnInit {
   } 
 
   getProductPrice( itemID ) : number {
-  	for(let item of INVENTORY) {
+/*  	for(let item of INVENTORY) {
   		if (item.itemID == itemID) {
   			console.log("itemfound");
   			return item.price
   		}
   	}
-  	console.log("notfound");
+  	console.log("notfound");*/
   	return 0
   } 
 

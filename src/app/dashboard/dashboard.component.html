@@ -29,25 +29,25 @@
 </div>
 <br>
 <!-- GRID -->
-<div *ngFor="let item of items">
+<div *ngFor="let item of raw_items">
 <div class="item  col-xs-4 col-lg-4 grid-group-item">
   <div class="thumbnail">
-    <img class="group list-group-image" src={{item.picture}} alt="" />
+    <img class="group list-group-image" src={{item.item_desc.Picture}} alt="" />
     <div class="caption">
-      <h4 class="group inner list-group-item-heading">
-        {{item.product_name}}
-      </h4>
+      <h3 class="group inner list-group-item-heading">
+        {{item.item_desc.Product_Name}}
+      </h3>
       <p class="group inner list-group-item-text">
-        {{item.product_desc}}
+        {{item.item_desc.Product_Desc}}
       </p>
       <div class="row">
         <div class="col-xs-12 col-md-6">
           <p class="lead">
-            {{item.price}}
+            ${{item.item_desc.Price}}
           </p>
         </div>
         <div class="col-xs-12 col-md-6">
-          <a class="btn btn-success" (click)="openItemPage(item.itemID)" routerLink="/item">See More</a>
+          <a class="btn btn-success" (click)="openItemPage(item.item_desc.ItemID)" routerLink="/item">See More</a>
         </div>
       </div>
     </div>
