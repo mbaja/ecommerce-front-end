@@ -89,71 +89,6 @@
       </div>
     </div> -->
     <div class="row">
-      <h4>Payment Details</h4>
-      <div class="input-group input-group-icon">
-        <input id="paymentFirstName" type="text" placeholder="Card Holder First Name"/>
-        <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-      </div>
-      <div class="input-group input-group-icon">
-        <input id="paymentLastName" type="text" placeholder="Card Holder Last"/>
-        <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-      </div>
-      <div class="input-group input-group-icon">
-        <input id="paymentCardNumber" type="text" placeholder="Card Number"/>
-        <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-      </div>
-      <div class="col-half">
-        <div class="input-group input-group-icon">
-          <input id="paymentCardCVC" type="text" placeholder="Card CVC"/>
-          <div class="input-icon"><i class="fa fa-user"></i></div>
-        </div>
-      </div>
-      <div class="col-half">
-        <div id="paymentCardExpMM" class="input-group">
-          <select>
-            <option>01</option>
-            <option>02</option>
-            <option>03</option>
-            <option>04</option>
-            <option>05</option>
-            <option>06</option>
-            <option>07</option>
-            <option>08</option>
-            <option>09</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-          </select>
-          <select id="paymentCardExpYYYY">
-            <option>2017</option>
-            <option>2018</option>
-            <option>2019</option>
-            <option>2020</option>
-            <option>2021</option>
-            <option>2022</option>
-          </select>
-        </div>
-      </div>
-    <div class="input-group input-group-icon">
-        <input id="paymentAddressStreet" type="address" placeholder="Cardholder Adress"/>
-        <div class="input-icon"><i class="fa fa-envelope"></i></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-half">
-        <div class="input-group">
-          <div class="col-third"><input id="paymentAddressCity" type="text" placeholder="City"/></div>
-          <div class="col-third"><input id="paymentAddressState" type="text" placeholder="State"/></div>
-        </div>
-      </div>
-      <div class="col-half">
-        <div class="input-group">
-          <div class="col-half"><input id="paymentAddressZip" type="text" placeholder="Zip"/></div>
-          <div class="col-half"><input id="paymentAddressCountry" type="text" placeholder="Country"/></div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
       <button type="submit">Submit</button>
     </div>
     </form>
@@ -163,15 +98,56 @@
     <h3>Vendor</h3>
     <div class="row">
       <div class="input-group input-group-icon">
-        <input [(ngModel)]="vendorUserName" name="vendorUserName" type="text" placeholder="Vendor Name"/>
+        <input name="vendorStoreName" [(ngModel)]="vendorStoreName" type="text" placeholder="Store Name"/>
         <div class="input-icon"><i class="fa fa-user"></i></div>
       </div>
       <div class="input-group input-group-icon">
-        <input [(ngModel)]="vendorPassword" name="vendorPassword" type="text" placeholder="Vendor Password"/>
+        <input [(ngModel)]="vendorUserName" name="vendorUserName" type="text" placeholder="Vendor User Name"/>
         <div class="input-icon"><i class="fa fa-user"></i></div>
       </div>
       <div class="input-group input-group-icon">
-        <input id="vendorDesc" [(ngModel)]="vendorDesc" name="vendorDesc" type="text" placeholder="Description"/>
+        <input name="customerPassword" [(ngModel)]="vendorPassword" type="password" placeholder="Password"/>
+        <div class="input-icon"><i class="fa fa-key"></i></div>
+      </div>
+      <div class="input-group input-group-icon">
+        <input name="customerFirsName" [(ngModel)]="vendorFirstName" type="text" placeholder="First Name"/>
+        <div class="input-icon"><i class="fa fa-user"></i></div>
+      </div>
+      <div class="input-group input-group-icon">
+        <input name="customerLastName" [(ngModel)]="vendorLastName" type="text" placeholder="Last Name"/>
+        <div class="input-icon"><i class="fa fa-user"></i></div>
+      </div>
+      <div class="input-group input-group-icon">
+        <input name="customerEmail" [(ngModel)]="vendorEmail" type="email" placeholder="Email Adress"/>
+        <div class="input-icon"><i class="fa fa-envelope"></i></div>
+      </div>
+      <div class="input-group input-group-icon">
+        <input name="customerPhone" [(ngModel)]="vendorPhone" type="text" placeholder="Phone Number"/>
+        <div class="input-icon"><i class="fa fa-user"></i></div>
+      </div>
+      <div class="input-group input-group-icon">
+        <input name="customerAddressStreet" [(ngModel)]="vendorAddressStreet" type="address" placeholder="Street Adress"/>
+        <div class="input-icon"><i class="fa fa-envelope"></i></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-half">
+        <div class="input-group">
+          <div class="col-third"><input name="customerAddressCity" [(ngModel)]="vendorAddressCity" type="text" placeholder="City"/></div>
+          <div class="col-third"><input name="customerAddressState" [(ngModel)]="vendorAddressState" type="text" placeholder="State"/></div>
+        </div>
+      </div>
+      <div class="col-half">
+        <div class="input-group">
+          <div class="col-half"><input name="customerAddressZip" [(ngModel)]="vendorAddressZip" type="number" placeholder="Zip"/></div>
+          <div class="col-half"><input name="customerAddressCountry" [(ngModel)]="vendorAddressCountry" type="text" placeholder="Country"/></div>
+        </div>
+      </div>
+      <div class="input-group input-group-icon">
+        <!-- <textarea id="vendorDesc" [(ngModel)]="vendorDesc" name="vendorDesc" type="text" placeholder="Description"/> -->
+        <!-- </textarea> -->
+        <textarea [(ngModel)]="vendorDesc" name="vendorDesc" rows="4" cols="50" type="text" placeholder="Description">
+        </textarea>
         <div class="input-icon"><i class="fa fa-user"></i></div>
       </div>
     </div>
