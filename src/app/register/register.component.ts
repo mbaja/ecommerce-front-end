@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../objects/user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
   vendorDesc:string;
 
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -71,21 +72,25 @@ export class RegisterComponent implements OnInit {
     console.log("User Address Country: ", this.customerAddressCountry);
 
     var newUser: User = {
-      userID : this.customerUserName,
+      userid : this.customerUserName,
       first_name: this.customerFirstName,
       last_name: this.customerLastName,
-      email: this.customerEmail,    
-      date_joined: null,
-      phone_number: this.customerPhone,
+      email: this.customerEmail,
+      phone: this.customerPhone,
       password: this.customerPassword,
-      street: this.customerAddressStreet,
+      address: this.customerAddressStreet,
       zip: this.customerAddressZip,
       city: this.customerAddressCity,
       state: this.customerAddressState,
       country: this.customerAddressState,
-      type_account: "customer"
+      type: "Customer"
     };
 
+    this.http.post('http://localhost:3000/register', newUser).subscribe(data => {
+      // Read the result field from the JSON response.
+      console.log(data);
+      this.router.navigate(['/login']);
+    });
 
   }
 

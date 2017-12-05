@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
     var foundUser = false;
     for( let i of this.users) {
-      if(username == i.userID && password == i.password) {
+      if(username == i.userid && password == i.password) {
         this.user.setUserLoggedIn(username);
         this.router.navigate(['dashboard']);
         foundUser = true;

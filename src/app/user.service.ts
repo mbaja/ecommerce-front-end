@@ -8,19 +8,18 @@ export class UserService {
 
   users = USERS;
   private user: User = {
-    userID : null,
+    userid : null,
     first_name: null,
     last_name: null,
     email: null,    
-    date_joined: null,
-    phone_number: null,
+    phone: null,
     password: null,
-    street: null,
+    address: null,
     zip: null,
     city: null,
     state: null,
     country: null,
-    type_account: null
+    type: null
   };
 
   private selectedItem;
@@ -34,10 +33,10 @@ export class UserService {
   }
 
   setUserLoggedIn( user ) {
-  	this.user.userID = user;
+  	this.user.userid = user;
     for(let i of this.users) {
-      if(i.userID == user) {
-        this.user.type_account = i.type_account
+      if(i.userid == user) {
+        this.user.type = i.type
       }
     }
   }
@@ -56,7 +55,7 @@ export class UserService {
   }
 
   getUserLoggedIn() {
-  	return this.user.userID;
+  	return this.user.userid;
   }
 
   setSelectedItem( itemID ) {
