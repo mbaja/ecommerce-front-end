@@ -235,3 +235,6 @@ select option {
     padding-right: 0;
   }
 }
+textarea {
+  width: 100%
+}

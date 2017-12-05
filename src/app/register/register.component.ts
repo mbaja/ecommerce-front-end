@@ -20,14 +20,21 @@ export class RegisterComponent implements OnInit {
   customerAddressState:string;
   customerAddressZip:number;
   customerAddressCountry:string;
-  // customerDOBDD:number;
-  // customerDOBMM:number;
-  // customerDOBYYYY:number;
-  // customerGender:string;
 
+  vendorStoreName:string;
   vendorUserName:string;
   vendorPassword:string;
+  vendorFirstName:string;
+  vendorLastName:string;
+  vendorEmail:string;
+  vendorPhone:string;
+  vendorAddressStreet:string;
+  vendorAddressCity:string;
+  vendorAddressState:string;
+  vendorAddressZip:number;
+  vendorAddressCountry:string;
   vendorDesc:string;
+
 
 
   constructor(private router:Router) { }
@@ -90,10 +97,18 @@ export class RegisterComponent implements OnInit {
   }
 
   registerVendor(e) {
-    console.log("Vendor Name:     ", this.vendorUserName);
-    console.log("Vendor Password: ", this.vendorPassword);
-    console.log("Vendor Desc:     ", this.vendorDesc);
-
-
+    console.log("vendorStoreName:      ", this.vendorStoreName);
+    console.log("vendorUserName:       ", this.vendorUserName);
+    console.log("Vendor Password:      ", this.vendorPassword);
+    console.log("vendorFirstName:      ", this.vendorFirstName);
+    console.log("vendorLastName:       " ,this.vendorLastName);
+    console.log("vendorEmail:          ", this.vendorEmail);
+    console.log("vendorPhone:          ", this.vendorPhone);
+    console.log("vendorAddressStreet:  ", this.vendorAddressStreet);
+    console.log("vendorAddressCity:    ", this.vendorAddressCity);
+    console.log("vendorAddressState:   ", this.vendorAddressState);
+    console.log("vendorAddressZip:     ", this.vendorAddressZip);
+    console.log("vendorAddressCountry: ", this.vendorAddressCountry);
+    console.log("Vendor Desc:          ", this.vendorDesc);
   }
 }
