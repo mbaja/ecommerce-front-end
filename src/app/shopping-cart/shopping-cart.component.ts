@@ -154,10 +154,40 @@ export class ShoppingCartComponent implements OnInit {
     return total;
   }
 
-  deleteItem( itemID ) {
-    console.log(itemID);
-    // code to delete the item
-    this.router.navigate(['/cart']);
+  deleteItem( cartID ) {
+    console.log("Cart ID", cartID);
+
+    this.http.post('http://localhost:3000/cart/delete', {cartid : cartID}, { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Cart Delete", data);
+      
+      var index = -1;
+      for (var i = 0; i < this.shopping_cart.length; i++)  {
+        if (cartID === this.shopping_cart[i].Cart.CartID)  {
+          index = i;
+        }
+      }
+
+      if (index >= 0)  {
+        this.shopping_cart.splice(index, 1);
+      }
+
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        this.flashMessage.danger('Invalid login.', {delay : 3000});
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        this.flashMessage.danger('Invalid login.', {delay : 3000});
+      }
+    }); 
+    
   }
 
   // USE THIS TO SAVE THE CART AFTER OR BEFORE EXITING
