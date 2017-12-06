@@ -6,9 +6,11 @@ import { Review } from "../objects/review";
 //import { INVENTORY } from '../objects/mock-items';    // HARDCODED VALUES TO BE DELETED
 //import { BUCCIREVIEWS } from '../objects/mock-reviews'// HARDCODED VALUES TO BE DELETED
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
-import {ActivatedRoute} from "@angular/router";
+import { FlashMessage } from 'angular-flash-message';
+
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-items-page',
@@ -17,7 +19,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ItemsPageComponent implements OnInit {
 
-  constructor(private user:UserService, private http : HttpClient, private route : ActivatedRoute) { }
+  constructor(private user:UserService, private http : HttpClient, private route : ActivatedRoute, private router : Router, private flashMessage : FlashMessage) { }
 
   itemQuantity:number = 0;
   item;
@@ -78,4 +80,38 @@ export class ItemsPageComponent implements OnInit {
     }
     return stars
   }
+
+
+  addToCart()  {
+
+    this.route.params.subscribe(params => {
+
+      var quantity = this.itemQuantity;
+      var itemid = params['id'];
+
+      this.http.post('http://localhost:3000/cart', {quantity : quantity, itemid : itemid}, { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Add to Cart", data);
+      this.router.navigate(['/dashboard']);
+      this.user.setShowMessage('Add to Cart Successful');
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        this.flashMessage.danger('Can\'t add to cart', {delay : 3000});
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        this.flashMessage.danger('Can\'t add to cart.', {delay : 3000});
+      }
+    }); 
+    });
+
+ 
+  }
 }
+
