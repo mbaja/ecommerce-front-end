@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { FlashMessage } from 'angular-flash-message';
 
 @Component({
   selector: 'app-myaccount',
@@ -21,9 +23,33 @@ export class MyaccountComponent implements OnInit {
   paymentAddressZip:string;
   paymentAddressCountry:string;
 
-  constructor(private router:Router, private user:UserService) { }
+  constructor(private router:Router, private user:UserService, private http : HttpClient, private flashMessage : FlashMessage) { }
+
+  orders;
+  //Orders is an array of objects where each object has the attributes Order and Item. Order has the Order info and Item has the Item info.
 
   ngOnInit() {
+
+    this.http.get('http://localhost:3000/orders', { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Order Data", data);
+      this.orders = data;
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        this.flashMessage.danger('Invalid login.', {delay : 3000});
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        this.flashMessage.danger('Invalid login.', {delay : 3000});
+      }
+    }); 
+
   }
 
   selectOrderHistoryTab(e){

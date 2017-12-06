@@ -9,8 +9,11 @@
     <div id="orderhistorycontent" class="tab-pane in active">
       <h3>Order History</h3>
       <table width="80%">
-        <div id="card">
+        <div id="card" *ngFor="let order of orders">
           <div class="card-block">
+            <h3>
+              {{order.Item.Product_Name}}
+            </h3>
             <tr>
               <td width="15%">Ship To: </td>
               <td width="255%">Order Placed: </td>
@@ -18,18 +21,18 @@
               <td width="25%">Order #: </td>
             </tr>
             <tr>
-              <td width="15%">69 Sex Lane</td>
-              <td width="25%">Oct 26, 2017</td>
-              <td width="25%">$33.75</td>
-              <td width="25%">#123FCC</td>
+              <td width="15%">{{order.Order.Street}}, {{order.Order.City}}, {{order.Order.State}} {{order.Order.ZIP}}, {{order.Order.Country}}</td>
+              <td width="25%">{{order.Order.Ordered_Date}}</td>
+              <td width="25%">${{order.Order.Quantity * order.Item.Price | number : '1.2-2'}}</td>
+              <td width="25%">#{{order.Order.OrderID}}</td>
             </tr>
             <tr>
-              <td width="40%"><img src="assets/5.jpg"></td>
+              <td width="40%"><img src="{{order.Item.Picture}}"></td>
               <td width="20%">
                 <br>Vendor:
-                <br>For the Foinest Creeping around
+                <br>{{order.Order.VendorID}}
                 <br>Description:
-                <br>For the Foinest Creeping around
+                <br>{{order.Item.Product_Desc}}
                 <br>
                 <br><button class="btn btn-primary" type="submit" style="background-color: #00b200;" (click)="openReviewPage(123)" routerLink="/review">Write a review</button>
               </td>
@@ -37,9 +40,9 @@
                 <br>Shipped:
                 <br>Oct 28.2017
                 <br>Tracking:
-                <br>#1234FGKLSJ
+                <br>#{{order.Order.Tracking_Num}}
                 <br>Delivery Type:
-                <br>Missile Uber
+                <br>{{order.Order.Delivery_Type}}
               </td>
             </tr>
           </div>
