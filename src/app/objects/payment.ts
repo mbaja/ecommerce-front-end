@@ -1,13 +1,15 @@
  export class Payment {
-  cardholder_firstname:string; // VARCHAR(50) NOT NULL
-  cardholder_lastname:string;  //VARCHAR(50) NOT NULL
-  card_num:number;             // BIGINT UNSIGNED NOT NULL
-  card_CVC:number;             // INT UNSIGNED NOT NULL
-  card_expirdate;              // INT UNSIGNED NOT NULL
-  street:string;               // VARCHAR(50) NOT NULL
-  zip:number;                  // INT UNSIGNED NOT NULL
-  city:string;                 // VARCHAR(50) NOT NULL
-  state:string;                // CHAR(2) NOT NULL
-  country:string;              //VARCHAR(50) NOT NULL
-  customerID:string;           // VARCHAR(50) NOT NULL
+  Cardholder_FirstName:string; // VARCHAR(50) NOT NULL
+  Cardholder_LastName:string;  //VARCHAR(50) NOT NULL
+  Card_Num:number;             // BIGINT UNSIGNED NOT NULL
+  Card_CCV:number;             // INT UNSIGNED NOT NULL
+  Card_ExpirDate;              // INT UNSIGNED NOT NULL
+  Street:string;               // VARCHAR(50) NOT NULL
+  Zip:number;                  // INT UNSIGNED NOT NULL
+  City:string;                 // VARCHAR(50) NOT NULL
+  State:string;                // CHAR(2) NOT NULL
+  Country:string;              //VARCHAR(50) NOT NULL
+  CustomerID:string;           // VARCHAR(50) NOT NULL
 }
+
+
