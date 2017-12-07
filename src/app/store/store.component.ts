@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreComponent implements OnInit {
 
+  vendor_item;
+
   constructor() { }
 
   ngOnInit() {
@@ -34,9 +36,8 @@ export class StoreComponent implements OnInit {
   	document.getElementById("additemcontent").className = "tab-pane fade in active";  	
   }
 
-  addItemToInventory() {
-  	var productDesc = document.getElementById("productDesc").textContent;
-  	console.log("productDesc: ", productDesc);
+  deleteInventoryItem() {
+  	console.log("Clicked delte inv item");
   	
   }
 }
