@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { Item } from '../objects/item';
 
-import { INVENTORY } from '../objects/mock-items';    // HARDCODED VALUES TO BE DELETED
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+
+import { FlashMessage } from 'angular-flash-message';
+
+//import { INVENTORY } from '../objects/mock-items';    // HARDCODED VALUES TO BE DELETED
 
 @Component({
   selector: 'app-review',
@@ -15,9 +19,10 @@ export class ReviewComponent implements OnInit {
   starRating:number;
   textReview:string;
   reviewItem:Item;
-  inv:Item[]=INVENTORY;
+  orderID:number;
+  item;
 
-  constructor(private router:Router, private user:UserService) { }
+  constructor(private router:Router, private user:UserService, private route : ActivatedRoute, private http : HttpClient, private flashMessage : FlashMessage) { }
 
   ngOnInit() {
     /*this.textReview = "";
@@ -41,6 +46,31 @@ export class ReviewComponent implements OnInit {
       }
     }
     console.log("Item Not Found");*/
+    this.route.params.subscribe( params => {
+        this.orderID = params['id'];
+
+        this.http.get('http://localhost:3000/review/' + this.orderID, { headers : 
+        new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+        }), withCredentials: true }).subscribe(data => {
+          console.log("Review Item Data", data);
+          this.item = data;
+        }, (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.log('An error occurred:', err.error.message);
+            this.flashMessage.danger('Can\'t add the review', {delay : 3000});
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+            this.flashMessage.danger('Can\'t add the review.', {delay : 3000});
+          }
+        }); 
+    });
+
+
   }
 
   submitReview() {
@@ -50,8 +80,31 @@ export class ReviewComponent implements OnInit {
     if(this.textReview.length == 0){
       alert("Enter review in text field!")
     } else {
-  	  alert("Review Submitted!");   
-  	  this.router.navigate(['dashboard']);
+
+
+      this.http.post('http://localhost:3000/review', {rating : this.starRating, review_text : this.textReview, order_id : this.orderID}, { headers : 
+        new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+        }), withCredentials: true }).subscribe(data => {
+          console.log("Review Post Data", data);
+          this.router.navigate(['/dashboard']);
+          this.user.setShowMessage('Added Review Successfully');
+        }, (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.log('An error occurred:', err.error.message);
+            this.flashMessage.danger('Can\'t add the review', {delay : 3000});
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+            this.flashMessage.danger('Can\'t add the review.', {delay : 3000});
+          }
+    }); 
+
+  	  //alert("Review Submitted!");   
+  	  //this.router.navigate(['dashboard']);
     }
   }
 

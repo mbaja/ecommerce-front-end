@@ -34,6 +34,7 @@ export class ItemsPageComponent implements OnInit {
     this.route.params.subscribe( params => {
         this.http.get('http://localhost:3000/items/' + params['id']).subscribe(data => {
         this.item = data;
+        console.log("Items Page Data",data);
       });
     });
     

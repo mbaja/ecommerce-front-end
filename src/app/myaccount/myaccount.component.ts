@@ -37,6 +37,7 @@ export class MyaccountComponent implements OnInit {
     }), withCredentials: true }).subscribe(data => {
       console.log("Order Data", data);
       this.orders = data;
+      this.orders.reverse();
     }, (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
         // A client-side or network error occurred. Handle it accordingly.
@@ -88,8 +89,8 @@ export class MyaccountComponent implements OnInit {
     console.log("Address Country: ", this.paymentAddressCountry)
   }
 
-  openReviewPage( itemID ) {
-    this.user.setReviewItem(itemID);
-    console.log("Dashboard setReviewItem:   ", itemID);
+  openReviewPage( OrderID ) {
+    //this.user.setReviewItem(OrderID);
+    console.log("Dashboard setReviewItem:   ", OrderID);
   }
 }

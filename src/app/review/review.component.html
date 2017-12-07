@@ -6,13 +6,13 @@
 <app-navbar></app-navbar>
 <div class="container">
 	<h3>Write a review for: </h3>
-	<h2>{{reviewItem.product_name}}</h2>
+	<h2>{{item.Product_Name}}</h2>
 	<div class="container">
 		<table width="80%">
 			<div id="card">
 				<div class="card-block">
 					<tr>
-						<td width="15%"><img src={{reviewItem.picture}}></td>
+						<td width="15%"><img src={{item.Picture}}></td>
 						<td><br></td>
 						<td width="255%">
 							<form (submit)="submitReview($event)">

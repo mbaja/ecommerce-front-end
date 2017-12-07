@@ -34,7 +34,9 @@
                 <br>Description:
                 <br>{{order.Item.Product_Desc}}
                 <br>
-                <br><button class="btn btn-primary" type="submit" style="background-color: #00b200;" (click)="openReviewPage(123)" routerLink="/review">Write a review</button>
+                <br><button class="btn btn-primary" type="submit" style="background-color: #00b200;" (click)="openReviewPage(order.Order.OrderID)" routerLink="/review/{{order.Order.OrderID}}">
+                  Write a review
+                </button>
               </td>
               <td width="20%">
                 <br>Shipped:

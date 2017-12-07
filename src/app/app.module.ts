@@ -57,7 +57,7 @@ const appRoutes:Routes = [
     component: BucciComponent
   },
   {
-    path: 'review',
+    path: 'review/:id',
     component: ReviewComponent
   }
 ];
