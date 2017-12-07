@@ -13,8 +13,8 @@ import { FlashMessage } from 'angular-flash-message';
 })
 export class NavbarComponent implements OnInit {
 
-  isCustomer = true;
-  isVendor = true;
+  isCustomer = false;
+  isVendor = false;
   
   constructor(private http: HttpClient, private router : Router, private flashMessage : FlashMessage) { }
 

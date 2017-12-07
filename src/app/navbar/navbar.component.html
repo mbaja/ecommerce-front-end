@@ -11,7 +11,7 @@
       </li>
       <a (click)="onSignOut()"><li style="float: right;">Signout</li></a>
       <a routerLink="/bucci"><li style="float: right;">About Bucci</li></a>
-      <a routerLink="/myaccount"><li style="float: right;">My Account</li></a>
+      <a routerLink="/myaccount"><li  *ngIf="isCustomer" style="float: right;">My Account</li></a>
       <a routerLink="/cart"><li *ngIf="isCustomer" style="float: right;">Shopping Cart</li></a>
       <a routerLink="/store"><li *ngIf="isVendor" style="float: right;">Store Inventory</li></a>
 
