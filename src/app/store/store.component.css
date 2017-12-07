@@ -14,6 +14,7 @@ table {
 button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
+  border-radius: 4 px;
   outline: 0;
   background: #cd1818;
   width: 50%%;
@@ -37,7 +38,7 @@ select {
   width: 100%;
   padding: 1em;
   line-height: 1.4;
-  background-color: #f9f9f9;
+  /*background-color: #f9f9f9;*/
   border: 1px solid #e5e5e5;
   border-radius: 3px;
   -webkit-transition: 0.35s ease-in-out;
@@ -45,6 +46,7 @@ select {
   -o-transition: 0.35s ease-in-out;
   transition: 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
+  color: black;
 }
 input:focus {
   outline: 0;
@@ -66,6 +68,7 @@ select {
   text-align: center;
   float: left;
   border-radius: 0;
+  color: black;
 }
 input[type="radio"] + label:first-of-type {
   border-top-left-radius: 3px;
@@ -80,12 +83,6 @@ input[type="radio"] + label i {
 }
 input[type="radio"]:checked + label,
 input:checked + label:before,
-select:focus,
-select:active {
-  background-color: #1d4f1d;
-  color: #fff;
-  border-color: #64ac15;
-}
 input[type="checkbox"] {
   display: none;
 }
@@ -116,26 +113,6 @@ input[type="checkbox"] + label:after {
 }
 input:checked + label:after {
   opacity: 1;
-}
-select {
-  height: 3.4em;
-  line-height: 2;
-}
-select:first-of-type {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-select:last-of-type {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-select:focus,
-select:active {
-  outline: 0;
-}
-select option {
-  background-color: #7ed321;
-  color: #fff;
 }
 .input-group {
   margin-bottom: 1em;
@@ -186,14 +163,7 @@ select option {
   transition: 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
 }
-/*.container {
-  max-width: 38em;
-  padding: 1em 3em 2em 3em;
-  margin: 0em auto;
-  background-color: #fff;
-  border-radius: 4.2px;
-  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
-}*/
+
 .row {
   zoom: 1;
 }
@@ -230,4 +200,23 @@ select option {
 
 #paymentDeets{
 	color: black;
+}
+#productDesc {
+  width: 60%;
+  min-height: 50px;
+  color: black;
+  background-color: white;
+  border: 3px;
+  border-radius: 4px;
+}
+div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
+
+    content: attr(data-placeholder);
+
+    float: left;
+
+    margin-left: 2px;
+
+    color: #b3b3b3;
+
 }

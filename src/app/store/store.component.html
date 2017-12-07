@@ -1,0 +1,78 @@
+<app-navbar></app-navbar>
+<div class="container">
+	<h1>Store Inventory</h1>
+	<ul class="nav nav-pills">
+		<li id="storeinventorytab" class="active" (click)="selectStoreInventoryTab($event)"><a class="active" data-toggle="pill">Store Inventory</a></li>
+		<li id="additemtab"  (click)="selectAddItemTab($event)"><a class="active" data-toggle="pill">Add Item</a></li>
+	</ul>
+	<div class="tab-content">
+		<div id="storeinventorycontent" class="tab-pane in active">
+			<h3>Store Inventory</h3>
+			<table id="cart" class="table table-condensed">
+				<thead>
+					<tr>
+						<th style="width:50%"><h4>Product</h4></th>
+						<th style="width:10%"><h4>Price</h4></th>
+						<th style="width:8%"><h4>Stock</h4></th>
+						<th style="width:10%"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="listItem" *ngFor="let item of shopping_cart">
+						<td data-th="Product">
+							<div class="row">
+								<div class="col-sm-2 hidden-xs"><img src="{{item.Item.Picture}}" alt="..." class="img-responsive"/></div>
+								<div class="col-sm-10">
+									<h4 class="nomargin">{{item.Item.Product_Name}}</h4>
+								</div>
+							</div>
+						</td>
+						<td data-th="Price">${{item.Item.Price}}</td>
+						<td data-th="Quantity">
+							<input id="someQuantityy" ng-model="quant" type="number" class="form-control text-center" max="{{item.Item.Quantity}}" min="1" [(ngModel)]="item.Cart.Quantity"> 
+						</td>
+						<td data-th="Subtotal" class="text-center">$ {{item.Cart.Quantity * item.Item.Price | number : '1.2-2'}}</td>
+						<td class="actions" data-th="">
+							<button class="btn btn-danger btn-sm" (click)="deleteItem(item.Cart.CartID)"><i class="fa fa-trash-o"></i>Delete</button>								
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="additemcontent" class="tab-pane fade">
+			<h3>Add Item</h3>
+			<form (submit)="addItemToInventory($event)">
+				<div id="paymentDeets">
+					<div class="row">
+						<!-- <div class="col-half"> -->
+						<div class="input-group input-group-icon col-half">
+							<input name="productName" [(ngModel)]="productName" type="text" placeholder="Product Name"/>
+							<div class="input-icon"><i class="fa fa-credit-card"></i></div>
+						</div>
+						<div class="input-group col-half">
+							<select name="productType" [(ngModel)]="productType">
+								<option value="Product Type" disabled selected>Product Type</option>
+								<option>Books</option>
+								<option>Clothing</option>
+								<option>Cooking</option>
+								<option>Food</option>
+								<option>Furniture</option>
+								<option>Office Stationary</option>
+								<option>Technology</option>
+							</select>
+						</div>
+					</div>
+					<div class="input-group input-group-icon row">
+					<div id="productDesc" contentEditable="true" data-placeholder="Product Description">    
+					</div>
+					</div>
+				</div>
+				<div class="row">
+					<button type="submit">Add Item to Inventory</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+

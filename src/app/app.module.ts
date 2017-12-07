@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
+import { HttpClientModule } from '@angular/common/http';
 
 import { UserService } from './user.service';
 import { AuthGuard } from './auth.guard';
@@ -19,7 +20,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ReviewComponent } from './review/review.component';
 import { FlashMessageModule } from 'angular-flash-message';
 
-import { HttpClientModule } from '@angular/common/http';
+import { StoreComponent } from './store/store.component';
 
 const appRoutes:Routes = [
   {
@@ -63,6 +64,11 @@ const appRoutes:Routes = [
     path: 'review/:id',
     component: ReviewComponent
   }
+  ,
+  {
+    path: 'store',
+    component: StoreComponent
+  }
 ];
 
 @NgModule({
@@ -78,6 +84,7 @@ const appRoutes:Routes = [
     MyaccountComponent,
     NavbarComponent,
     ReviewComponent,
+    StoreComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
