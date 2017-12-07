@@ -37,8 +37,11 @@
 							<input id="someQuantityy" ng-model="quant" type="number" class="form-control text-center" max="{{item.Item.Quantity}}" min="1" [(ngModel)]="item.Quantity"> 
 						</td> -->
 						<td data-th="Quantity">{{item.Item.Quantity}}</td>
-						<td class="actions" data-th="">
+						<td class="actions" data-th="" *ngIf="item.Item.Available == 1">
 							<button class="btn btn-danger btn-sm" (click)="deleteInventoryItem(item.Item.ItemID)"><i class="fa fa-trash-o"></i>Delete</button>								
+						</td>
+						<td class="actions" data-th="" *ngIf="item.Item.Available == 0">
+							<button class="btn btn-danger btn-sm" (click)="availableInventoryItem(item.Item.ItemID)"><i class="fa fa-trash-o"></i>Make Available</button>
 						</td>
 					</tr>
 				</tbody>

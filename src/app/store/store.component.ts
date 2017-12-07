@@ -78,7 +78,42 @@ export class StoreComponent implements OnInit {
       }
 
       if (index >= 0)  {
-        this.vendor_items.splice(index, 1);
+        this.vendor_items[index].Item.Available = 0;
+      }
+
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        
+      }
+    }); 
+  }
+
+  availableInventoryItem(ItemID)  {
+
+    this.http.request('post', 'http://localhost:3000/available/' + ItemID, { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Available Item data", data);
+
+      var index = -1;
+
+      for (var i = 0; i < this.vendor_items.length; i++) {
+        if (this.vendor_items[i].Item.ItemID === ItemID)  {
+          index = i;
+        }
+      }
+
+      if (index >= 0)  {
+        this.vendor_items[index].Item.Available = 1;
       }
 
     }, (err: HttpErrorResponse) => {
