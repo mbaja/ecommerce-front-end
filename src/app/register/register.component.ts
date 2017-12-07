@@ -137,5 +137,11 @@ export class RegisterComponent implements OnInit {
       store_name: this.vendorStoreName,
       store_desc: this.vendorStoreDesc
     };
+
+    this.http.post('http://localhost:3000/register', newVendor).subscribe(data => {
+      // Read the result field from the JSON response.
+      console.log(data);
+      this.router.navigate(['/login']);
+    });
   }
 }
