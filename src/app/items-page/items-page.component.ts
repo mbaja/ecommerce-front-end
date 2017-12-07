@@ -21,7 +21,7 @@ export class ItemsPageComponent implements OnInit {
 
   constructor(private user:UserService, private http : HttpClient, private route : ActivatedRoute, private router : Router, private flashMessage : FlashMessage) { }
 
-  itemQuantity:number = 0;
+  itemQuantity:number = 1;
   item;
   //inv:Item[]=INVENTORY;
   //reviews = BUCCIREVIEWS;

@@ -4,15 +4,16 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-4 item-photo">
-        <img style="max-width:100%;" src={{item.item_desc.Picture}} />
+        <img src={{item.item_desc.Picture}} />
       </div>
       <div class="col-xs-5" style="border:0px solid gray">
         <h3>{{item.item_desc.Product_Name | uppercase}}</h3>
         <h5 style="color:#337ab7">Quantity  left {{item.item_desc.Quantity}}</h5>
         <h3 style="margin-top:0px;">$ {{item.item_desc.Price}}</h3>
+        <p>{{item.item_desc.Product_Desc}}</p>
         <div class="section" style="padding-bottom:20px;">
-          <h6 class="title-attr"><small>Quantity</small></h6>
-          <div>
+          Quantity
+          <div class="quantity-count">
             <div class="btn-minus" (click)="minusQuantity()"><span class="glyphicon glyphicon-minus"></span></div>
             <input id="itemQuantity" value={{itemQuantity}} />
             <div class="btn-plus" (click)="addQuantity()"><span class="glyphicon glyphicon-plus"></span></div>
@@ -20,13 +21,6 @@
         </div>
         <div class="section" style="padding-bottom:20px;">
           <button class="btn btn-success" (click)="addToCart()"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button>
-        </div>
-      </div>
-      <div class="col-xs-9">
-        <div style="width:100%;border-top:1px solid silver">
-          <p style="padding:15px;">
-            <small>{{item.item_desc.Product_Desc}}</small>
-          </p>
         </div>
       </div>
     </div>

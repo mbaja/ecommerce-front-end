@@ -83,6 +83,12 @@ h3, h5, small {
     color: white;
 }
 img {
-    width: 15%;
-    height: 50%;
+    width: 80%;
+    height: 80%;
+}
+p {
+    color: white;
+}
+.quantity-count {
+    align-items: center;
 }
