@@ -8,27 +8,60 @@ import { Payment } from '../objects/payment';
 })
 export class CheckoutComponent implements OnInit {
 
-  shipping;
+  shippingType;
+  deliveryType;
+  paymentOption;
+
+  newCardSave;
+  newCardFirstName;
+  newCardLastName;
+  newCardNumber;
+  newCardCVC;
+  newCardExpMM;
+  newCardExpYYYY;
+  newCardAddressStreet;
+  newCardAddressCity;
+  newCardAddressState;
+  newCardAddressZip;
+
+  // HARDCODED VALUE TO BE PULLED FROM BACKEND
   payment: Payment = {
-    Cardholder_FirstName:"TestFirstName", // VARCHAR(50) NOT NULL
-    Cardholder_LastName:"TestLastName",  //VARCHAR(50) NOT NULL
-    Card_Num:1234123412341234,             // BIGINT UNSIGNED NOT NULL
-    Card_CCV:123,        // INT UNSIGNED NOT NULL
-    Card_ExpirDate:1234,              // INT UNSIGNED NOT NULL
-    Street:"Street",               // VARCHAR(50) NOT NULL
-    Zip:12312,                  // INT UNSIGNED NOT NULL
-    City:"City",                 // VARCHAR(50) NOT NULL
-    State:"NY",                // CHAR(2) NOT NULL
-    Country:"USA",              //VARCHAR(50) NOT NULL
-    CustomerID:"test"           // VARCHAR(50) NOT NULL
-  };  // WE NEED TO FILL IN THIS DATA WITH PAYMENT TYPE
+    Cardholder_FirstName:"TestFirstName", 
+    Cardholder_LastName:"TestLastName",  
+    Card_Num:1234123412341234,             
+    Card_CCV:123,        
+    Card_ExpirDate:1234,             
+    Street:"Street",          
+    Zip:12312,                  
+    City:"City",              
+    State:"NY",                
+    Country:"USA",            
+    CustomerID:"test"           
+  };  
   constructor() { }
 
   ngOnInit() {
   }
 
   placeOrder(e) {
-  	console.log("clicked");
-  	console.log(this.shipping);
+  	console.log("Place Order");
+  	console.log("shippingType: ", this.shippingType);
+    console.log("deliveryType: ", this.deliveryType);
+
+    console.log("paymentOption: ", this.paymentOption);
+
+    console.log("newCardSave: ", this.newCardSave);
+    console.log("newCardFirstName: ", this.newCardFirstName);
+    console.log("newCardLastName: ", this.newCardLastName);
+    console.log("newCardNumber: ", this.newCardNumber);
+    console.log("newCardCVC: ", this.newCardCVC);
+    console.log("newCardExpMM: ", this.newCardExpMM);
+    console.log("newCardExpYYYY: ", this.newCardExpYYYY);
+    console.log("newCardAddressStreet: ", this.newCardAddressStreet);
+    console.log("newCardAddressCity: ", this.newCardAddressCity);
+    console.log("newCardAddressState: ", this.newCardAddressState);
+    console.log("newCardAddressZip: ", this.newCardAddressZip);
+
+    
   }
 }

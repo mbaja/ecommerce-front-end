@@ -1,50 +1,50 @@
 <body>
-<app-navbar></app-navbar>
-<form (submit)="placeOrder($event)">
-  <div class="container-fluid">
-    <div class="page-header">
-      <h1>Checkout</h1>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-       <h3>Delivery Type&hellip;</h3>
-          <div class="list-group" style="width: 35%">
-            <div class="list-group-item">
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios1" [(ngModel)]="shipping" value="standard">
-                Standard (3-5 Business days)
-              </label>
-              <br>
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" [(ngModel)]="shipping" value="express">
-                Express Shipping (1 Business day)
-              </label>
-              <br>
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios3" [(ngModel)]="shipping" value="twoday">
-                2-Day Shipping (2 Business days)
-              </label>
-            </div>
+  <app-navbar></app-navbar>
+  <form (submit)="placeOrder($event)">
+    <div class="container-fluid">
+      <div class="page-header">
+        <h1>Checkout</h1>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+         <h3>Delivery Type&hellip;</h3>
+         <div class="list-group" style="width: 35%">
+          <div class="list-group-item">
+            <label>
+              <input type="radio" name="optionsRadios1" [(ngModel)]="shippingType" value="standard">
+              Standard (3-5 Business days)
+            </label>
+            <br>
+            <label>
+              <input type="radio" name="optionsRadios1" [(ngModel)]="shippingType" value="express">
+              Express Shipping (1 Business day)
+            </label>
+            <br>
+            <label>
+              <input type="radio" name="optionsRadios1" [(ngModel)]="shippingType" value="twoday">
+              2-Day Shipping (2 Business days)
+            </label>
           </div>
-         <h3>Choose Shipping Company&hellip;</h3>
-          <div class="list-group" style="width: 50%">
-            <div class="list-group-item">
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="standard" checked>
-                USPS Shipping
-              </label>
-              <br>
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" value="express" checked>
-                Amazon Drone Xpress
-              </label>
-              <br>
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios3" value="twoday" checked>
-                Missile Uber
-              </label>
-            </div>
+        </div>
+        <h3>Choose Shipping Company&hellip;</h3>
+        <div class="list-group" style="width: 50%">
+          <div class="list-group-item">
+            <label>
+              <input type="radio" name="optionsRadios2" [(ngModel)]="deliveryType" value="USPS">
+              USPS Shipping
+            </label>
+            <br>
+            <label>
+              <input type="radio" name="optionsRadios2" [(ngModel)]="deliveryType" value="amazon">
+              Amazon Drone Xpress
+            </label>
+            <br>
+            <label>
+              <input type="radio" name="optionsRadios2" [(ngModel)]="deliveryType" value="muber">
+              Missile Uber
+            </label>
           </div>
+        </div>
         <!-- <h3>Ship my order to</h3>
         <div class="list-group">
           <div class="list-group-item">
@@ -126,15 +126,15 @@
               <div class="row radio">
                 <div class="col-xs-3">
                   <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="oldCard" checked>
-                  My Payment Card
+                    <input type="radio" name="optionsRadios3" [(ngModel)]="paymentOption" value="oldCard">
+                    My Payment Card
                   </label>
                 </div>
                 <div class="col-xs-9">
                   <div class="row">
                     <div class="col-xs-4">
                       <dl class="dl-small">
-                        <dt>Credit Card Number</dt>
+                        <dt><h4>Credit Card Number</h4></dt>
                         <dd>{{payment.Card_Num}}</dd>
                       </dl>
                     </div>
@@ -160,29 +160,37 @@
               <div class="row radio">
                 <div class="col-xs-3">
                   <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="newCard">
-                  New Card
-                  <br><input id="checkBox" type="checkbox"> Save Card Information
+                    <input type="radio" name="optionsRadios3" [(ngModel)]="paymentOption" value="newCard">
+                    New Card
+                    <br><input id="checkBox" name="newCard" [(ngModel)]="newCardSave" type="checkbox"> Save Card Information
                   </label>
                 </div>
                 <div class="col-xs-9">
                   <div class="row">
                     <div class="col-xs-4">
                       <dl class="dl-small">
-                        <dt>Credit Card Number</dt>
-                        <dd><input type="text" placeholder="Card Number"/> </dd> 
+                        <dt>Cardholder First Name</dt>
+                        <dd><input type="text" name="cardFirstName" placeholder="First Name" [(ngModel)]="newCardFirstName"/> </dd> 
                       </dl>
                       <dl class="dl-small">
-                        <dt>CVC</dt>
-                        <dd><input type="text" placeholder="CVC"/> </dd> 
+                        <dt>Cardholder Last Name</dt>
+                        <dd><input type="text" name="cardLastName" placeholder="Last Name" [(ngModel)]="newCardLastName"/> </dd> 
+                      </dl>
+                      <dl class="dl-small">
+                        <dt>Credit Card Number</dt>
+                        <dd><input type="text" name="cardNumber" placeholder="Card Number" [(ngModel)]="newCardNumber"/> </dd> 
                       </dl>
                     </div>
                     <div class="col-xs-2">
                       <dl class="dl-small">
+                        <dt>CVC</dt>
+                        <dd><input type="text" name="cardCVC" placeholder="CVC" style="width:70%" [(ngModel)]="newCardCVC"/> </dd> 
+                      </dl>
+                      <dl class="dl-small">
                         <dt>Expiration</dt>
                         <dd>
                           <div class="input-group styled-select slate">
-                            <select>
+                            <select name="cardExpMM" [(ngModel)]="newCardExpMM">
                               <option>01</option>
                               <option>02</option>
                               <option>03</option>
@@ -196,7 +204,7 @@
                               <option>11</option>
                               <option>12</option>
                             </select>
-                            <select>
+                            <select name="cardExpYYYY" [(ngModel)]="newCardExpYYYY">
                               <option>2017</option>
                               <option>2018</option>
                               <option>2019</option>
@@ -211,10 +219,10 @@
                     <div class="col-xs-6">
                       <dl class="dl-small">
                         <dt>Billing Address</dt>
-                        <dd><input type="text" placeholder="Address"/></dd>
-                        <dd><input type="text" placeholder="City"/></dd>
-                        <dd><input type="text" placeholder="State"/></dd>
-                        <dd><input type="text" placeholder="Zip"/></dd>
+                        <dd><input type="text" name="cardAddressStreet" placeholder="Address" [(ngModel)]="newCardAddressStreet"/></dd>
+                        <dd><input type="text" name="cardAddressCity" placeholder="City" [(ngModel)]="newCardAddressCity"></dd>
+                        <dd><input type="text" name="cardAddressCity" placeholder="State" [(ngModel)]="newCardAddressState"/></dd>
+                        <dd><input type="text" name="cardAddressZip" placeholder="Zip" [(ngModel)]="newCardAddressZip"/></dd>
                       </dl>
                     </div>
                   </div>
@@ -229,6 +237,6 @@
       </div>
     </div>
   </div>
-  </form>
+</form>
 </body>
 
