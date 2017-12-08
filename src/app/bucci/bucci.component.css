@@ -1,0 +1,14 @@
+.container {
+	background-color: #333;
+    border-radius: 10px;
+    margin: auto;
+    text-align: block;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    width: 40%;
+}
+h1, h3 {
+	text-align: center;
+	color: white;
+}
