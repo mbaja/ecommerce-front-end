@@ -34,8 +34,11 @@
                 <br>Description:
                 <br>{{order.Item.Product_Desc}}
                 <br>
-                <br><button class="btn btn-primary" type="submit" style="background-color: #00b200;" (click)="openReviewPage(order.Order.OrderID)" routerLink="/review/{{order.Order.OrderID}}">
+                <br><button class="btn btn-primary" type="submit" style="background-color: #00b200;" (click)="openReviewPage(order.Order.OrderID)" routerLink="/review/{{order.Order.OrderID}}" *ngIf="order.Order.Reviewed == 0">
                   Write a review
+                </button>
+                <button class="btn btn-primary" style="background-color: #00b200;" routerLink="/item/{{order.Item.ItemID}}" *ngIf="order.Order.Reviewed == 1">
+                  Check Reviewed Item
                 </button>
               </td>
               <td width="20%">
