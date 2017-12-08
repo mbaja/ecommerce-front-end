@@ -43,27 +43,15 @@
             </td>
             <td width="20%">
               <br>Shipped:
-              <br>Oct 28.2017
+              <br>N/A
               <br>Tracking:
               <br>#{{order.Order.Tracking_Num}}
               <br>Delivery Type:
               <br>{{order.Order.Delivery_Type}}
             </td>
-          
-                  Write a review
               
-                <button class="btn btn-primary" style="background-color: #00b200;" routerLink="/item/{{order.Item.ItemID}}" *ngIf="order.Order.Reviewed == 1">
-                  Check Reviewed Item
-                </button>
-              
-              <td width="20%">
-                <br>Shipped:
-                <br>N/A
-                <br>Tracking:
-                <br>#{{order.Order.Tracking_Num}}
-                <br>Delivery Type:
-                <br>{{order.Order.Delivery_Type}}
-              </td>
+                
+    
             </tr>
           </div>
         </div>
