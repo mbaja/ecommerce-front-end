@@ -21,6 +21,7 @@ import { ReviewComponent } from './review/review.component';
 import { FlashMessageModule } from 'angular-flash-message';
 
 import { StoreComponent } from './store/store.component';
+import { VendorComponent } from './vendor/vendor.component';
 
 const appRoutes:Routes = [
   {
@@ -63,11 +64,14 @@ const appRoutes:Routes = [
   {
     path: 'review/:id',
     component: ReviewComponent
-  }
-  ,
+  },
   {
     path: 'store',
     component: StoreComponent
+  },
+  {
+    path: 'vendor',
+    component: VendorComponent
   }
 ];
 
@@ -85,6 +89,7 @@ const appRoutes:Routes = [
     NavbarComponent,
     ReviewComponent,
     StoreComponent,
+    VendorComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -7,4 +7,5 @@ export class Item {
   Quantity: number;		
   Picture: string;		// Contains the file name of the picture (not the picture itself)
   UserID : string;
+  Available: number;
 }

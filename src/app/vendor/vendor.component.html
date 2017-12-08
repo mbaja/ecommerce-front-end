@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="container">
+	<h1>{{vendorName}}</h1>
+	<h4>{{vendorDesc}}</h4>
+	<div *ngFor="let item of raw_items">
+		<div class="item  col-xs-4 col-lg-4 grid-group-item">
+			<div class="thumbnail">
+				<img class="group list-group-image" src={{item.item_desc.Picture}} alt="" />
+				<div class="caption">
+					<h3 class="group inner list-group-item-heading">
+						<!-- {{item.item_desc.Product_Name}} -->
+						this thing
+					</h3>
+					<p class="group inner list-group-item-text">
+						<!-- {{item.item_desc.Product_Desc}} -->
+						that thing
+					</p>
+					<div class="row">
+						<div class="col-xs-12 col-md-6">
+							<p class="lead">
+								<!-- ${{item.item_desc.Price}} -->
+								other thing
+								{{vendorName}}
+							</p>
+						</div>
+						<div class="col-xs-12 col-md-6" *ngIf="item.item_desc.Available == 1">
+							<a class="btn btn-success" (click)="openItemPage(item.item_desc.ItemID)" routerLink="/item/{{item.item_desc.ItemID}}">See More</a>
+						</div>
+						<div class="col-xs-12 col-md-6" *ngIf="item.item_desc.Available == 0">
+							Not Available
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
