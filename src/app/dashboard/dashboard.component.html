@@ -46,8 +46,11 @@
             ${{item.item_desc.Price}}
           </p>
         </div>
-        <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-6" *ngIf="item.item_desc.Available == 1">
           <a class="btn btn-success" (click)="openItemPage(item.item_desc.ItemID)" routerLink="/item/{{item.item_desc.ItemID}}">See More</a>
+        </div>
+        <div class="col-xs-12 col-md-6" *ngIf="item.item_desc.Available == 0">
+          Not Available
         </div>
       </div>
     </div>
