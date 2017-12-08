@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { FlashMessage } from 'angular-flash-message';
 import { User } from '../objects/user';
 import { Vendor } from '../objects/vendor';
@@ -108,8 +108,21 @@ export class RegisterComponent implements OnInit {
     this.http.post('http://localhost:3000/register', newUser).subscribe(data => {
       // Read the result field from the JSON response.
       console.log(data);
+      this.flashMessage.danger("Register Complete", {delay: 4000});
       this.router.navigate(['/login']);
-    });
+      
+    }, (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.log('An error occurred:', err.error.message);
+            this.flashMessage.danger('Can\'t register this user', {delay : 3000});
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+            this.flashMessage.danger('Can\'t register this user.', {delay : 3000});
+          }
+     });
 
   }
 
@@ -154,8 +167,21 @@ export class RegisterComponent implements OnInit {
     this.http.post('http://localhost:3000/register', newVendor).subscribe(data => {
       // Read the result field from the JSON response.
       console.log(data);
+      this.flashMessage.success("Register Complete", {delay: 4000});
       this.router.navigate(['/login']);
-    });
+      
+    }, (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.log('An error occurred:', err.error.message);
+            this.flashMessage.danger('Can\'t register this user', {delay : 3000});
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+            this.flashMessage.danger('Can\'t register this user.', {delay : 3000});
+          }
+     });
   }
 
   checkIfCustomerFormFilled() {
