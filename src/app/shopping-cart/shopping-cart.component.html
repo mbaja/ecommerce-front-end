@@ -43,7 +43,7 @@
 				<td><a class="btn btn-warning" (click)="continueShopping()"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 				<td colspan="2" class="hidden-xs"></td>
 				<td class="hidden-xs text-center"><strong>Total ${{sumTotal() | number : '1.2-2'}}</strong></td>
-				<td><a class="btn btn-success btn-block" (click)="checkout()">Checkout <i class="fa fa-angle-right"></i></a></td>
+				<td *ngIf="checkShoppingCart()"><a class="btn btn-success btn-block" (click)="checkout()">Checkout <i class="fa fa-angle-right"></i></a></td>
 			</tr>
 		</tfoot>
 	</table>

@@ -71,6 +71,7 @@ export class ShoppingCartComponent implements OnInit {
     });
   } 
 
+
   getProductPrice( itemID ) : number {
 /*  	for(let item of INVENTORY) {
   		if (item.itemID == itemID) {
@@ -224,5 +225,14 @@ export class ShoppingCartComponent implements OnInit {
         this.flashMessage.danger('Invalid Cart.', {delay : 3000});
       }
     });
+  }
+
+  checkShoppingCart() {
+    console.log("Shoppng CDFRT: ", this.shopping_cart);
+    if(this.shopping_cart.length > 0){
+      return true;
+    }
+    return false;
+    // return this.shopping_cart;
   }
 }

@@ -15,19 +15,6 @@ export class CheckoutComponent implements OnInit {
   deliveryType;
   paymentOption;
 
-  paymentOptionNum = 0;
-  newCardSave;
-  newCardFirstName;
-  newCardLastName;
-  newCardNumber;
-  newCardCVC;
-  newCardExpMM;
-  newCardExpYYYY;
-  newCardAddressStreet;
-  newCardAddressCity;
-  newCardAddressState;
-  newCardAddressZip;
-
   // HARDCODED VALUE TO BE PULLED FROM BACKEND
   /*payments: Payment[] = [
   {
@@ -139,5 +126,12 @@ export class CheckoutComponent implements OnInit {
     // console.log("newCardAddressCity: ", this.newCardAddressCity);
     // console.log("newCardAddressState: ", this.newCardAddressState);
     // console.log("newCardAddressZip: ", this.newCardAddressZip); 
+  }
+
+  checkIfCheckoutFilled() {
+    // if() {
+    //   return false;
+    // }
+    // return true;
   }
 }
