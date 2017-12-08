@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import {ActivatedRoute, Router} from "@angular/router";
 
 import { Item } from '../objects/item';
 
@@ -11,42 +12,60 @@ import { Item } from '../objects/item';
 export class VendorComponent implements OnInit {
 
   raw_items;
-  // raw_items: Item [] = [ 
-  // {
-  //   Price: 12,  		// Holds the price of the particular item
-  //   Product_Name: "something", // Contains the name of the item
-  //   Type: "clothing", 		// Contains the type of the item (e.x. Book, Clothing, Computer, etc
-  //   ItemID: 1, 		// AUTO_INCREMENT,
-  //   Product_Desc: "some desc that is dope af and you cannot resist but to buy",	// Contains a short description of the item
-  //   Quantity: 3,		
-  //   Picture: "assets/5.jpg",		// Contains the file name of the picture (not the picture itself)
-  //   UserID : "test",
-  //   Available: 0
-  // },
-  // {
-  //   Price: 13,  		// Holds the price of the particular item
-  //   Product_Name: "something", // Contains the name of the item
-  //   Type: "clothing", 		// Contains the type of the item (e.x. Book, Clothing, Computer, etc
-  //   ItemID: 2, 		// AUTO_INCREMENT,
-  //   Product_Desc: "some desc that is dope af and you cannot resist but to buy",	// Contains a short description of the item
-  //   Quantity: 3,		
-  //   Picture: "assets/5.jpg",		// Contains the file name of the picture (not the picture itself)
-  //   UserID : "test",
-  //   Available: 1
-  // }
-  // ];
+
   vendorName = "Big Baller Brand";
   vendorDesc = "The most BUCCI shit ya can buy mother fuckers";
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private route : ActivatedRoute) { }
 
   ngOnInit() {
-  	this.http.get('http://localhost:3000/items').subscribe(data => {
 
+    this.route.params.subscribe( params => {
+
+      this.vendorName = params['name'];
+
+      this.http.get('http://localhost:3000/vendor/items/' + params['name'], { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Single Vendor Item Data", data);
       this.raw_items = data;
-      
-    });
-  }
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        //this.flashMessage.danger('Can\'t add to cart', {delay : 3000});
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        //this.flashMessage.danger('Can\'t add to cart.', {delay : 3000});
+      }
+    }); 
 
-  
+    this.http.get('http://localhost:3000/vendor/' + params['name'], { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Single Vendor Data", data);
+      this.vendorDesc = data['Description'];
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        //this.flashMessage.danger('Can\'t add to cart', {delay : 3000});
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        //this.flashMessage.danger('Can\'t add to cart.', {delay : 3000});
+      }
+    }); 
+
+    });
+
+    
+  }
 }

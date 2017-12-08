@@ -70,7 +70,7 @@ const appRoutes:Routes = [
     component: StoreComponent
   },
   {
-    path: 'vendor',
+    path: 'vendor/:name',
     component: VendorComponent
   }
 ];

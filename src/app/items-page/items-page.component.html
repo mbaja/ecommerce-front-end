@@ -8,7 +8,8 @@
       </div>
       <div class="col-xs-5" style="border:0px solid gray">
         <h3>{{item.item_desc.Product_Name | uppercase}}</h3>
-        <h5 style="color:#337ab7">Quantity  left {{item.item_desc.Quantity}}</h5>
+        <h5>Sold By <a routerLink="/vendor/{{item.item_desc.UserID}}">{{item.item_desc.UserID}}</a></h5>
+        <h5>Quantity  left {{item.item_desc.Quantity}}</h5>
         <h3 style="margin-top:0px;">$ {{item.item_desc.Price}}</h3>
         <p>{{item.item_desc.Product_Desc}}</p>
         <div class="section" style="padding-bottom:20px;">

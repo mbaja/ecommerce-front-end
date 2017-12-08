@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Payment } from '../objects/payment';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-checkout',
@@ -26,7 +28,7 @@ export class CheckoutComponent implements OnInit {
   newCardAddressZip;
 
   // HARDCODED VALUE TO BE PULLED FROM BACKEND
-  payments: Payment[] = [
+  /*payments: Payment[] = [
   {
     Cardholder_FirstName:"TestFirstName", 
     Cardholder_LastName:"TestLastName",  
@@ -53,10 +55,35 @@ export class CheckoutComponent implements OnInit {
     Country:"USA",            
     CustomerID:"test"           
   }
-  ];  
-  constructor() { }
+  ];  */
+
+  payments : Payment[];
+
+  constructor(private http : HttpClient, private router : Router) { }
 
   ngOnInit() {
+
+    this.http.get('http://localhost:3000/payment', { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Payment Data", data);
+      this.payments = <Payment[]>data;
+
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        //this.flashMessage.danger('Invalid login.', {delay : 3000});
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        //this.flashMessage.danger('Invalid login.', {delay : 3000});
+      }
+    }); 
+
   }
 
   placeOrder(e) {
@@ -64,7 +91,41 @@ export class CheckoutComponent implements OnInit {
   	console.log("shippingType: ", this.shippingType);
     console.log("deliveryType: ", this.deliveryType);
 
-    console.log("paymentOption: ", this.paymentOption);
+    console.log("paymentOption: ", parseInt(this.paymentOption));
+
+
+/*    var card_num = req.body.card_num;
+  var customerid = req.user.userid;
+  var delivery_type = req.body.delivery_type;
+  var shipment_company = req.body.shipment_company;*/
+
+    var body = {
+      card_num : parseInt(this.paymentOption),
+      delivery_type : this.deliveryType,
+      shipment_company : this.shippingType
+    };
+
+    this.http.post('http://localhost:3000/checkout', body, { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Checkout Data", data);
+      this.router.navigate(['/dashboard']);
+
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        //this.flashMessage.danger('Invalid login.', {delay : 3000});
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        //this.flashMessage.danger('Invalid login.', {delay : 3000});
+      }
+    }); 
+
 
     // console.log("newCardSave: ", this.newCardSave);
     // console.log("newCardFirstName: ", this.newCardFirstName);
