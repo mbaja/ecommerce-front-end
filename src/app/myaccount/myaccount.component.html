@@ -15,23 +15,23 @@
               {{order.Item.Product_Name}}
             </h3>
             <tr>
-              <td width="15%">Ship To: </td>
-              <td width="255%">Order Placed: </td>
-              <td width="25%">Total: </td>
-              <td width="25%">Order #: </td>
+              <td width="15%"><h4>Ship To: </h4></td>
+              <td width="255%"><div style="float: left;"><h4>Order Placed: </h4></div> <div style="float: right; padding-right: 25px;"><h4>Order: </h4></div></td>
+              <td width="25%"><h4>Total: </h4></td>
+              <td width="25%"></td>
             </tr>
             <tr>
               <td width="15%">{{order.Order.Street}}, {{order.Order.City}}, {{order.Order.State}} {{order.Order.ZIP}}, {{order.Order.Country}}</td>
-              <td width="25%">{{order.Order.Ordered_Date}}</td>
+              <td width="25%"><div style="float: left;">{{order.Order.Ordered_Date}}</div> <div style="float: right; padding-right: 25px;">#{{order.Order.OrderID}}</div></td>
               <td width="25%">${{order.Order.Quantity * order.Item.Price | number : '1.2-2'}}</td>
-              <td width="25%">#{{order.Order.OrderID}}</td>
+              <td width="25%"></td>
             </tr>
             <tr>
               <td width="40%"><img src="{{order.Item.Picture}}"></td>
               <td width="20%">
-                <br>Vendor:
+                <br><h4>Vendor:</h4>
                 <br>{{order.Order.VendorID}}
-                <br>Description:
+                <br><h5>Description:</h5>
                 <br>{{order.Item.Product_Desc}}
                 <br>
                 <br><button class="btn btn-primary" type="submit" style="background-color: #00b200;" (click)="openReviewPage(order.Order.OrderID)" routerLink="/review/{{order.Order.OrderID}}" *ngIf="order.Order.Reviewed == 0">

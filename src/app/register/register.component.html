@@ -40,55 +40,20 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-half">
-        <div class="input-group">
-          <div class="col-third"><input name="customerAddressCity" [(ngModel)]="customerAddressCity" type="text" placeholder="City"/></div>
-          <div class="col-third"><input name="customerAddressState" [(ngModel)]="customerAddressState" type="text" placeholder="State"/></div>
-        </div>
-      </div>
-      <div class="col-half">
-        <div class="input-group">
-          <div class="col-half"><input name="customerAddressZip" [(ngModel)]="customerAddressZip" type="number" placeholder="Zip"/></div>
-          <div class="col-half"><input name="customerAddressCountry" [(ngModel)]="customerAddressCountry" type="text" placeholder="Country"/></div>
-        </div>
-      </div>
+          <div style="width:35%; padding-right: 5px;">
+          <input name="customerAddressCity" [(ngModel)]="customerAddressCity" type="text" placeholder="City"/>
+          </div>
+          <div style="width:15%; padding-right: 5px; padding-left: 5px;">
+          <input name="customerAddressState" [(ngModel)]="customerAddressState" type="text" placeholder="State"/>
+          </div>
+          <div style="width:20%; padding-right: 5px; padding-left: 5px;">
+          <input name="customerAddressZip" [(ngModel)]="customerAddressZip" placeholder="Zip" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "number" maxlength = "5"/>
+          </div>
+          <div style="width:30%; padding-left: 5px;">
+          <input name="customerAddressCountry" [(ngModel)]="customerAddressCountry" type="text" placeholder="Country"/>
+          </div>
     </div>
-<!--     <div class="row">
-      <div class="col-half">
-        <h4>Date of Birth</h4>
-        <div class="input-group">
-          <div class="col-third">
-            <input name="customerDOBDD" [(ngModel)]="customerDOBDD" type="text" placeholder="DD" maxlength="2"/>
-          </div>
-          <div class="col-third">
-            <input name="customerDOBMM" [(ngModel)]="customerDOBMM" type="text" placeholder="MM" maxlength="2"/>
-          </div>
-          <div class="col-third">
-            <input name="customerDOBYYYY" [(ngModel)]="customerDOBYYYY" type="text" placeholder="YYYY" maxlength="4"/>
-          </div>
-        </div>
-      </div>
-      <div class="col-half">
-        <h4>Gender</h4>
-        <div class="input-group">
-          <select id="customerGender" class="gender-input">
-            <option value="" disabled selected>Select your option</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Agender</option>
-            <option>Androgyne</option>
-            <option>Bigender</option>
-            <option>Genderqueer</option>
-            <option>Gender Bender</option>
-            <option>Hijra</option>
-            <option>Pangender</option>
-            <option>Queer heterosexuality</option>
-            <option>P-60 Helicopter</option>
-          </select>
-        </div>
-      </div>
-    </div> -->
-    <div class="row">
+    <div class="row" style="padding-top: 10px;">
       <button type="submit">Submit</button>
     </div>
     </form>
@@ -131,27 +96,24 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-half">
-        <div class="input-group">
-          <div class="col-third"><input name="customerAddressCity" [(ngModel)]="vendorAddressCity" type="text" placeholder="City"/></div>
-          <div class="col-third"><input name="customerAddressState" [(ngModel)]="vendorAddressState" type="text" placeholder="State"/></div>
+          <div style="width:35%; padding-right: 5px;">
+          <input name="customerAddressCity" [(ngModel)]="vendorAddressCity" type="text" placeholder="City"/>
+          </div>
+          <div style="width:15%; padding-right: 5px; padding-left: 5px;">
+          <input name="customerAddressState" [(ngModel)]="vendorAddressState" type="text" placeholder="State"/>
+          </div>
+          <div style="width:20%; padding-right: 5px; padding-left: 5px;">
+          <input name="customerAddressZip" [(ngModel)]="vendorAddressZip" placeholder="Zip" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "number" maxlength = "5"/>
+          </div>
+          <div style="width:30%; padding-left: 5px;">
+          <input name="customerAddressCountry" [(ngModel)]="vendorAddressCountry" type="text" placeholder="Country"/>
+          </div>
         </div>
-      </div>
-      <div class="col-half">
-        <div class="input-group">
-          <div class="col-half"><input name="customerAddressZip" [(ngModel)]="vendorAddressZip" type="number" placeholder="Zip"/></div>
-          <div class="col-half"><input name="customerAddressCountry" [(ngModel)]="vendorAddressCountry" type="text" placeholder="Country"/></div>
-        </div>
-      </div>
-      <div class="input-group input-group-icon">
-        <!-- <textarea id="vendorDesc" [(ngModel)]="vendorDesc" name="vendorDesc" type="text" placeholder="Description"/> -->
-        <!-- </textarea> -->
-        <textarea [(ngModel)]="vendorStoreDesc" name="vendorStoreDesc" rows="4" cols="50" type="text" placeholder="Description">
+      <div class="input-group" style="padding-top: 10px;">
+        <textarea [(ngModel)]="vendorStoreDesc" name="vendorStoreDesc" type="text" placeholder="Description">
         </textarea>
-        <div class="input-icon"><i class="fa fa-user"></i></div>
       </div>
-    </div>
-    <div class="row">
+    <div>
       <button type="submit">Submit</button>
     </div>
     </form>

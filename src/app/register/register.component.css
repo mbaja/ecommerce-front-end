@@ -236,5 +236,12 @@ select option {
   }
 }
 textarea {
-  width: 100%
+  min-height: 100px;
+  width: 106%;
+  position: relative;
+  right: 17px;
+}
+img {
+  height: 160px;
+  width: 160px;
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { FlashMessage } from 'angular-flash-message';
 import { User } from '../objects/user';
 import { Vendor } from '../objects/vendor';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
