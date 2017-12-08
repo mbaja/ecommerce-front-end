@@ -49,13 +49,13 @@
               <br>Delivery Type:
               <br>{{order.Order.Delivery_Type}}
             </td>
-          </tr>
+          
                   Write a review
-                </button>
+              
                 <button class="btn btn-primary" style="background-color: #00b200;" routerLink="/item/{{order.Item.ItemID}}" *ngIf="order.Order.Reviewed == 1">
                   Check Reviewed Item
                 </button>
-              </td>
+              
               <td width="20%">
                 <br>Shipped:
                 <br>N/A
@@ -67,7 +67,7 @@
             </tr>
           </div>
         </div>
-      </div>
+      
     </table>
   </div>
   <div id="paymentcontent" class="tab-pane fade">
