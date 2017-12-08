@@ -248,4 +248,39 @@ export class MyaccountComponent implements OnInit {
     }
     return true;
   }
+
+  deletePayment(Card_Num)  {
+    this.http.post('http://localhost:3000/payment/delete', {card_num : Card_Num},  { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Payment Delete Data", data);
+      this.flashMessage.success('Successful Deleting Payment', {delay : 3000});
+
+      var index = -1;
+
+      for (var i = 0; i < this.payments.length; i++) {
+        if (this.payments[i].Card_Num === Card_Num) {
+          index = i;
+        }
+      }
+
+      if (index >= 0)  {
+        this.payments.splice(index, 1);
+      }
+
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        this.flashMessage.danger('Invalid login.', {delay : 3000});
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(err);
+        this.flashMessage.danger('Invalid login.', {delay : 3000});
+      }
+    }); 
+  }
 }

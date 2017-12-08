@@ -92,6 +92,9 @@
                     <dd>{{payment.Street}}, {{payment.City}}, {{payment.State}} {{payment.Zip}}, {{payment.Country}} </dd>
                   </dl>
                 </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-danger btn-sm" (click)="deletePayment(payment.Card_Num)"><i class="fa fa-trash-o"></i>Delete</button> 
+                </div>
               </div>
             </div>
           </div>
