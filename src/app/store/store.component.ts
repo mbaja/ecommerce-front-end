@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { FlashMessage } from 'angular-flash-message';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-store',
@@ -17,7 +19,7 @@ export class StoreComponent implements OnInit {
   addItemPicture;
   addItemDesc;
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private flashMessage : FlashMessage, private user : UserService) { }
 
   ngOnInit() {
 
@@ -147,6 +149,75 @@ export class StoreComponent implements OnInit {
   	console.log("addItemQuantity: ", this.addItemQuantity);
   	console.log("addItemPicture: ", this.addItemPicture);
   	console.log("addItemDesc", this.addItemDesc);
+
+/*    var userid = req.user.userid;
+  var price = req.body.price;
+  var prod_name = req.body.prod_name;
+  var type = req.body.type;
+  var prod_desc = req.body.prod_desc;
+  var quantity = req.body.quantity;
+  var picture = req.body.picture;*/
+
+    var body = {
+      price : this.addItemPrice,
+      prod_name : this.addItemName,
+      type : this.addItemType,
+      prod_desc : this.addItemDesc,
+      quantity : this.addItemQuantity,
+      picture : this.addItemPicture
+    };
+
+    this.http.post('http://localhost:3000/inventory', body,{ headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Item Add Data", data);
+      this.user.setShowMessage('Add Item Successful');
+
+      this.addItemName = "";
+      this.addItemType = "";
+      this.addItemPrice = "";
+      this.addItemQuantity = "";
+      this.addItemPicture = "";
+      this.addItemDesc = "";
+
+
+      this.http.get('http://localhost:3000/inventory', { headers : 
+    new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }), withCredentials: true }).subscribe(data => {
+      console.log("Inventory data", data);
+      this.vendor_items = data;
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        
+      }
+    }); 
+
+
+
+
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('An error occurred:', err.error.message);
+        
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        
+      }
+    }); 
 
   }  
 }
