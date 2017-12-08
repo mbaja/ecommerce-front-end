@@ -10,6 +10,13 @@ export class StoreComponent implements OnInit {
 
   vendor_items;
 
+  addItemName;
+  addItemType;
+  addItemPrice;
+  addItemQuantity;
+  addItemPicture;
+  addItemDesc;
+
   constructor(private http : HttpClient) { }
 
   ngOnInit() {
@@ -129,4 +136,17 @@ export class StoreComponent implements OnInit {
       }
     }); 
   }
+
+  addItemToInventory() {
+  	this.addItemDesc = document.getElementById("productDesc").textContent;
+
+  	console.log("Clicked");
+  	console.log("addItemName: ", this.addItemName);
+  	console.log("addItemType: ", this.addItemType);
+  	console.log("addItemPrice: ", this.addItemPrice);
+  	console.log("addItemQuantity: ", this.addItemQuantity);
+  	console.log("addItemPicture: ", this.addItemPicture);
+  	console.log("addItemDesc", this.addItemDesc);
+
+  }  
 }
