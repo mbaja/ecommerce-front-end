@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { FlashMessage } from 'angular-flash-message';
+import { Payment } from '../objects/payment';
 
 @Component({
   selector: 'app-myaccount',
@@ -22,6 +23,36 @@ export class MyaccountComponent implements OnInit {
   paymentAddressState:string;
   paymentAddressZip:string;
   paymentAddressCountry:string;
+
+  // HARDCODED VALUE TO BE PULLED FROM BACKEND
+  payments: Payment[] = [
+  {
+    Cardholder_FirstName:"TestFirstName", 
+    Cardholder_LastName:"TestLastName",  
+    Card_Num:1234123412341234,             
+    Card_CCV:123,        
+    Card_ExpirDate:1234,             
+    Street:"Street",          
+    Zip:12312,                  
+    City:"City",              
+    State:"NY",                
+    Country:"USA",            
+    CustomerID:"test"           
+  },
+  {
+    Cardholder_FirstName:"TestFirstName", 
+    Cardholder_LastName:"TestLastName",  
+    Card_Num:1234123412341231,             
+    Card_CCV:123,        
+    Card_ExpirDate:1234,             
+    Street:"Street",          
+    Zip:12312,                  
+    City:"City",              
+    State:"NY",                
+    Country:"USA",            
+    CustomerID:"test"           
+  }
+  ];  
 
   constructor(private router:Router, private user:UserService, private http : HttpClient, private flashMessage : FlashMessage) { }
 

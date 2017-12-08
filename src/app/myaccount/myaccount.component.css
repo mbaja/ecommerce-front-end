@@ -231,3 +231,7 @@ select option {
 #paymentDeets{
 	color: black;
 }
+.list-group-item {
+  border-color: black;
+  background-color: #585858;
+}

@@ -55,7 +55,40 @@
       </table>
     </div>
     <div id="paymentcontent" class="tab-pane fade">
-      <h3>Payment Details</h3>
+    <h3>Payment Options&hellip;</h3>
+        <!-- <div class="list-group"> -->
+        <div *ngFor="let payment of payments">
+          <div class="list-group-item">
+            <div class="list-group-item-heading">
+              <div class="row radio">
+                <div class="col-xs-9">
+                  <div class="row">
+                    <div class="col-xs-4">
+                      <dl class="dl-small">
+                        <dt><h4>Credit Card Number</h4></dt>
+                        <dd>{{payment.Card_Num}}</dd>
+                      </dl>
+                    </div>
+                    <div class="col-xs-2">
+                      <dl class="dl-small">
+                        <dt>Expiration</dt>
+                        <dd>{{payment.Card_ExpirDate}}</dd>
+                      </dl>
+                    </div>
+                    <div class="col-xs-6">
+                      <dl class="dl-small">
+                        <dt>Billing Address</dt>
+                        <dd>{{payment.Street}}, {{payment.City}}, {{payment.State}} {{payment.Zip}} </dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        <!-- </div> -->
+      <h3>Add New Card</h3>
       <form (submit)="submitPaymentDetails($event)">
       <div id="paymentDeets">
       <div class="row">
