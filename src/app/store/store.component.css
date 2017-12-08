@@ -186,7 +186,7 @@ input:checked + label:after {
 .col-third {
   padding-right: 10px;
   float: left;
-  width: 33.33333333%;
+  width: 25%;
 }
 .col-third:last-of-type {
   padding-right: 0;

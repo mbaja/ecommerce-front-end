@@ -32,7 +32,7 @@ export class StoreComponent implements OnInit {
   	document.getElementById("additemtab").className = "active";
 
   	// Set content toggle
-	document.getElementById("storeinventorycontent").className = "tab-pane fade";
+	  document.getElementById("storeinventorycontent").className = "tab-pane fade";
   	document.getElementById("additemcontent").className = "tab-pane fade in active";  	
   }
 
