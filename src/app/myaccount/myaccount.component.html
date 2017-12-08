@@ -61,24 +61,31 @@
           <div class="list-group-item">
             <div class="list-group-item-heading">
               <div class="row radio">
-                <div class="col-xs-9">
+                <div class="col-xs-12">
                   <div class="row">
-                    <div class="col-xs-4">
+                    <div class="col-xs-2">
+                      <dl class="dl-small">
+                        <dt>Name</dt>
+                        <dd>{{payment.Cardholder_FirstName}}</dd>
+                        <dd>{{payment.Cardholder_LastName}}</dd>
+                      </dl>
+                    </div>
+                    <div class="col-xs-2">
                       <dl class="dl-small">
                         <dt><h4>Credit Card Number</h4></dt>
-                        <dd>{{payment.Card_Num}}</dd>
+                        <dd>{{displayFormatCardNum(payment.Card_Num)}}</dd>
                       </dl>
                     </div>
                     <div class="col-xs-2">
                       <dl class="dl-small">
                         <dt>Expiration</dt>
-                        <dd>{{payment.Card_ExpirDate}}</dd>
+                        <dd>{{displayFormatExpirDate(payment.Card_ExpirDate)}}</dd>
                       </dl>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-4">
                       <dl class="dl-small">
                         <dt>Billing Address</dt>
-                        <dd>{{payment.Street}}, {{payment.City}}, {{payment.State}} {{payment.Zip}} </dd>
+                        <dd>{{payment.Street}}, {{payment.City}}  {{payment.Zip}}, {{payment.State}} {{payment.Zip}} </dd>
                       </dl>
                     </div>
                   </div>

@@ -1,7 +1,7 @@
  export class Payment {
   Cardholder_FirstName:string; // VARCHAR(50) NOT NULL
   Cardholder_LastName:string;  //VARCHAR(50) NOT NULL
-  Card_Num:number;             // BIGINT UNSIGNED NOT NULL
+  Card_Num:any;             // BIGINT UNSIGNED NOT NULL
   Card_CCV:number;             // INT UNSIGNED NOT NULL
   Card_ExpirDate:number;              // INT UNSIGNED NOT NULL
   Street:string;               // VARCHAR(50) NOT NULL
