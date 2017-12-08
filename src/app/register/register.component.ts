@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
 
 
 //<<<<<<< HEAD
-  constructor(private router:Router, private http: HttpClient) { }
+  constructor(private router:Router, private http: HttpClient,private flashMessage:FlashMessage) { }
 //=======
 
   //constructor(private router:Router) { }
@@ -84,6 +84,12 @@ export class RegisterComponent implements OnInit {
     console.log("User Address ZIP:     ", this.customerAddressZip);
     console.log("User Address Country: ", this.customerAddressCountry);
 
+    if(!this.checkIfCustomerFormFilled()) {
+      console.log("One or more data fields is empty is EMPTY");
+      this.flashMessage.danger("Register Form Not Complete", {delay: 4000});
+      return;
+    }
+
     var newUser: User = {
       userid : this.customerUserName,
       first_name: this.customerFirstName,
@@ -122,6 +128,12 @@ export class RegisterComponent implements OnInit {
     console.log("vendorAddressCountry: ", this.vendorAddressCountry);
     console.log("Vendor Desc:          ", this.vendorStoreDesc);
 
+    if(!this.checkIfVendorFormFilled()) {
+      console.log("One or more data fields is empty is EMPTY");
+      this.flashMessage.danger("Register Form Not Complete", {delay: 4000});
+      return;
+    }
+
     var newVendor: Vendor = {
       userid : this.vendorUserName,
       first_name: this.vendorFirstName,
@@ -144,5 +156,45 @@ export class RegisterComponent implements OnInit {
       console.log(data);
       this.router.navigate(['/login']);
     });
+  }
+
+  checkIfCustomerFormFilled() {
+    if(
+      this.customerUserName == null || this.customerUserName == "" ||
+      this.customerFirstName == null || this.customerFirstName == "" ||
+      this.customerLastName == null || this.customerLastName == "" ||
+      this.customerEmail == null || this.customerEmail == "" ||
+      this.customerPassword == null || this.customerPassword == "" ||
+      this.customerPhone == null || this.customerPhone == "" ||
+      this.customerAddressStreet == null || this.customerAddressStreet == "" ||
+      this.customerAddressCity == null || this.customerAddressCity == "" ||
+      this.customerAddressState == null || this.customerAddressState == "" ||
+      this.customerAddressZip == null ||
+      this.customerAddressCountry == null || this.customerAddressCountry == ""
+      ) {
+      return false;
+    }
+    return true;
+  }
+
+  checkIfVendorFormFilled() {
+    if(
+      this.vendorStoreName == null || this.vendorStoreName == "" ||
+      this.vendorUserName == null || this.vendorUserName == "" ||
+      this.vendorPassword == null || this.vendorPassword == "" ||
+      this.vendorFirstName == null || this.vendorFirstName == "" || 
+      this.vendorLastName == null || this.vendorLastName == "" ||
+      this.vendorEmail == null || this.vendorEmail == "" ||
+      this.vendorPhone == null || this.vendorPhone == "" ||
+      this.vendorAddressStreet == null || this.vendorAddressStreet == "" ||
+      this.vendorAddressCity == null || this.vendorAddressCity == "" ||
+      this.vendorAddressState == null || this.vendorAddressState == "" ||
+      this.vendorAddressZip == null ||
+      this.vendorAddressCountry == null || this.vendorAddressCountry == "" ||
+      this.vendorStoreDesc == null || this.vendorStoreDesc == "" 
+      ) {
+      return false;
+    }
+    return true;
   }
 }
