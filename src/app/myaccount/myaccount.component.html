@@ -116,12 +116,12 @@
               <div class="input-icon"><i class="fa fa-credit-card"></i></div>
             </div>
             <div class="input-group input-group-icon">
-              <input name="paymentCardNumber" [(ngModel)]="paymentCardNumber" type="text" placeholder="Card Number"/>
+              <input name="paymentCardNumber" [(ngModel)]="paymentCardNumber" type="number" placeholder="Card Number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "number" maxlength = "16"/>
               <div class="input-icon"><i class="fa fa-credit-card"></i></div>
             </div>
             <div class="col-half">
               <div class="input-group input-group-icon">
-                <input name="paymentCardCVC" [(ngModel)]="paymentCardCVC" type="text" placeholder="Card CVC"/>
+                <input name="paymentCardCVC" [(ngModel)]="paymentCardCVC" type="number" placeholder="Card CVC" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "number" maxlength = "3"/>
                 <div class="input-icon"><i class="fa fa-user"></i></div>
               </div>
             </div>
