@@ -1,4 +1,7 @@
 <app-navbar></app-navbar>
+<div id="flash-message">
+  <flash-message></flash-message>
+</div>
 <div class="container">
   <h1>My Account</h1>
   <ul class="nav nav-pills">
@@ -27,7 +30,7 @@
               <td width="25%"></td>
             </tr>
             <tr>
-              <td width="40%"><img src="{{order.Item.Picture}}"></td>
+              <td width="40%"><img src="{{order.Item.Picture}}" style="width:160px; height: 160px;"></td>
               <td width="20%">
                 <br><h4>Vendor:</h4>
                 <br>{{order.Order.VendorID}}

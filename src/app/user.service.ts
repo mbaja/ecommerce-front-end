@@ -1,25 +1,15 @@
 import { Injectable } from '@angular/core';
 import { User } from './objects/user';
 
-import { USERS } from './objects/mock-users';    // HARDCODED VALUES TO BE DELETED
+//import { USERS } from './objects/mock-users';    // HARDCODED VALUES TO BE DELETED
 
 @Injectable()
 export class UserService {
 
-  users = USERS;
-  private user: User = {
-    userid : null,
-    first_name: null,
-    last_name: null,
-    email: null,    
-    phone: null,
-    password: null,
-    address: null,
-    zip: null,
-    city: null,
-    state: null,
-    country: null,
-    type: null
+  //users = USERS;
+  private user = {
+    UserID : "None",
+    Type_Account : "None"
   };
 
   private selectedItem;
@@ -33,12 +23,7 @@ export class UserService {
   }
 
   setUserLoggedIn( user ) {
-  	this.user.userid = user;
-    for(let i of this.users) {
-      if(i.userid == user) {
-        this.user.type = i.type
-      }
-    }
+  	this.user = user;
   }
 
   setShowMessage( message ) {
@@ -55,7 +40,11 @@ export class UserService {
   }
 
   getUserLoggedIn() {
-  	return this.user.userid;
+  	return this.user.UserID;
+  }
+
+  getUserType() {
+    return this.user.Type_Account;
   }
 
   setSelectedItem( itemID ) {

@@ -175,6 +175,8 @@ export class ShoppingCartComponent implements OnInit {
         this.shopping_cart.splice(index, 1);
       }
 
+      this.flashMessage.success('Successfully deleted item.', {delay : 3000});
+
     }, (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
         // A client-side or network error occurred. Handle it accordingly.

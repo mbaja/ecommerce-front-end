@@ -2,122 +2,148 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { UserService } from './user.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-	constructor(private http : HttpClient) {}
+	constructor(private http : HttpClient, private user : UserService, private router : Router) {}
 
-	authenticated;
-	type;
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
 
   	let url : string = state.url;
+  	let username : string = this.user.getUserLoggedIn();
+  	let type : string = this.user.getUserType();
 
   	if (url === '/login')	{
-
+  		return true;
   	}
   	else if (url === '/register')	{
-
+  		return true;
   	}
   	else if (url === '/dashboard')	{
-
+  		if (username !== "None")	{
+  			return true;
+  		}
+  		else {
+  			this.router.navigate(['/login']);
+  			return false;
+  		}
   	}
   	else if (url.indexOf('/item/') >= 0)	{
-
+  		if (username !== "None")	{
+  			return true;
+  		}
+  		else {
+  			this.router.navigate(['/login']);
+  			return false;
+  		}
   	}
   	else if (url === '/cart') 	{
-
+  		if (username !== "None")	{
+  			if (type === "Customer")	{
+  				return true;
+  			}
+  			else {
+  				this.router.navigate(['/dashboard']);
+  				return false;
+  			}
+  		}
+  		else {
+  			this.router.navigate(['/login']);
+  			return false;
+  		}
   	}
   	else if (url === '/checkout')	{
-
+  		if (username !== "None")	{
+  			if (type === "Customer")	{
+  				return true;
+  			}
+  			else {
+  				this.router.navigate(['/dashboard']);
+  				return false;
+  			}
+  		}
+  		else {
+  			this.router.navigate(['/login']);
+  			return false;
+  		}
   	}
   	else if (url === '/myaccount') {
-
+  		if (username !== "None")	{
+  			if (type === "Customer")	{
+  				return true;
+  			}
+  			else {
+  				this.router.navigate(['/dashboard']);
+  				return false;
+  			} 
+  		}
+  		else {
+  			this.router.navigate(['/login']);
+  			return false;
+  		}
   	}
   	else if (url === '/bucci') {
-
+  		if (username !== "None")	{
+  			return true;
+  		}
+  		else {
+  			this.router.navigate(['/login']);
+  			return false;
+  		}
   	}
   	else if (url.indexOf('/review/') >= 0) {
-
+  		if (username !== "None")	{
+  			if (type === "Customer")	{
+  				return true;
+  			}
+  			else {
+  				this.router.navigate(['/dashboard']);
+  				return false;
+  			}
+  		}
+  		else {
+  			this.router.navigate(['/login']);
+  			return false;
+  		}
   	}
   	else if (url === '/store') {
-
+  		if (username !== "None")	{
+  			if (type === "Vendor")	{
+  				return true;
+  			}
+  			else {
+  				this.router.navigate(['/dashboard']);
+  				return false;
+  			}
+  		}
+  		else {
+  			this.router.navigate(['/login']);
+  			return false;
+  		}
   	}
   	else if (url.indexOf('/vendor/') >= 0) {
-
+  		if (username !== "None")	{
+  			return true;
+  		}
+  		else {
+  			this.router.navigate(['/login']);
+  			return false;
+  		}
   	}
   	else {
-
+  		this.router.navigate(['/login']);
+  		return false;
   	}
 
-  	this.loggedIn();
-  	this.getUserType();
-
-  	console.log("Auth URL", url);
-  	console.log("Auth loggedIn", this.authenticated);
-  	console.log("Auth type", this.type);
-
-    return true;
   }
 
-  loggedIn() {
+  
 
-  	this.authenticated = false;
-
-  	this.http.get('http://localhost:3000/loggedin', { headers : 
-    new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }), withCredentials: true }).subscribe(data => {
-      
-      this.authenticated = true;
-      
-    }, (err: HttpErrorResponse) => {
-      if (err.error instanceof Error) {
-        // A client-side or network error occurred. Handle it accordingly.
-        console.log('An error occurred:', err.error.message);
-        //this.flashMessage.danger('Invalid login.', {delay : 3000});
-      } else {
-        // The backend returned an unsuccessful response code.
-        // The response body may contain clues as to what went wrong,
-        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-        //this.flashMessage.danger('Invalid login.', {delay : 3000});
-      }
-    }); 
-  }
-
-  getUserType() {
-
-  	this.type = "";
-
-  	this.http.get('http://localhost:3000/profile', { headers : 
-    new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }), withCredentials: true }).subscribe(data => {
-      
-      var type_acc = data['User'].Type_Account;
-
-    	this.type = type_acc;
-      
-    }, (err: HttpErrorResponse) => {
-      if (err.error instanceof Error) {
-        // A client-side or network error occurred. Handle it accordingly.
-        console.log('An error occurred:', err.error.message);
-        //this.flashMessage.danger('Invalid login.', {delay : 3000});
-      } else {
-        // The backend returned an unsuccessful response code.
-        // The response body may contain clues as to what went wrong,
-        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-        //this.flashMessage.danger('Invalid login.', {delay : 3000});
-      }
-    }); 
-
-    
-
-  }
+   
 }

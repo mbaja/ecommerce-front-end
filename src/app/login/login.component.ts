@@ -48,6 +48,9 @@ export class LoginComponent implements OnInit {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }), withCredentials: true }).subscribe(data => {
+
+      this.user.setUserLoggedIn(data['User']);
+
       console.log("Login data", data);
       this.router.navigate(['/dashboard']);
       this.user.setShowMessage('Login Successful');
