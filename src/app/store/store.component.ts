@@ -150,6 +150,11 @@ export class StoreComponent implements OnInit {
   	console.log("addItemPicture: ", this.addItemPicture);
   	console.log("addItemDesc", this.addItemDesc);
 
+    if(!this.checkIfAddItemFormFilled()){
+      console.log("One or more data fields is empty is EMPTY");
+      this.flashMessage.danger("Invalid Form Data", {delay: 4000});
+      return;
+    }
 /*    var userid = req.user.userid;
   var price = req.body.price;
   var prod_name = req.body.prod_name;
@@ -219,5 +224,19 @@ export class StoreComponent implements OnInit {
       }
     }); 
 
-  }  
+  } 
+
+  checkIfAddItemFormFilled() {
+    if(
+      this.addItemName == "" || this.addItemName == null ||
+      this.addItemType == "" || this.addItemType == null ||
+      this.addItemPrice == "" ||
+      this.addItemQuantity == "" || this.addItemQuantity == null ||
+      this.addItemPicture == "" || this.addItemPicture == null ||
+      this.addItemDesc == "" || this.addItemName == ""
+     ) {
+      return false;
+    }
+    return true;
+  } 
 }
