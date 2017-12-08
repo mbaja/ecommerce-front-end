@@ -30,10 +30,12 @@ const appRoutes:Routes = [
   },
   {
     path: 'login',
+    canActivate: [AuthGuard],
     component: LoginComponent,
   },
   {
     path: 'register',
+    canActivate: [AuthGuard],
     component: RegisterComponent,
   },
   {
@@ -43,34 +45,42 @@ const appRoutes:Routes = [
   },
   {
     path: 'item/:id',
+    canActivate: [AuthGuard],
     component: ItemsPageComponent
   },
   {
     path: 'cart',
+    canActivate: [AuthGuard],
     component: ShoppingCartComponent
   },
   {
     path: 'checkout',
+    canActivate: [AuthGuard],
     component: CheckoutComponent
   },
   {
     path: 'myaccount',
+    canActivate: [AuthGuard],
     component: MyaccountComponent
   },
   {
     path: 'bucci',
+    canActivate: [AuthGuard],
     component: BucciComponent
   },
   {
     path: 'review/:id',
+    canActivate: [AuthGuard],
     component: ReviewComponent
   },
   {
     path: 'store',
+    canActivate: [AuthGuard],
     component: StoreComponent
   },
   {
     path: 'vendor/:name',
+    canActivate: [AuthGuard],
     component: VendorComponent
   }
 ];
