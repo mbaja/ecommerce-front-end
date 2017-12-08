@@ -1,12 +1,15 @@
-<head>  
+<!-- <head>  
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+</head> -->
 <app-navbar></app-navbar>
 <div class="container">
 	<h3>Write a review for: </h3>
 	<h2>{{item.Product_Name}}</h2>
+	<div id="flash-message">
+		<flash-message></flash-message>
+	</div>
 	<div class="container">
 		<table width="80%">
 			<div id="card">
@@ -17,7 +20,7 @@
 						<td width="255%">
 							<form (submit)="submitReview($event)">
 								<div class="form-group row">
-									<label for="example-number-input" class="col-2 col-form-label">Star Rating:</label>
+									<label for="example-number-input" class="col-2 col-form-label">Star Rating (1-5):</label>
 									<div class="col-10">
 										<input type="number"  name="starRating" [(ngModel)]="starRating" value="1"  min=1 max=5 width="10%">
 									</div>

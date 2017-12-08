@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { Item } from '../objects/item';
+import { FlashMessage } from 'angular-flash-message';
 
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
-import { FlashMessage } from 'angular-flash-message';
 
 //import { INVENTORY } from '../objects/mock-items';    // HARDCODED VALUES TO BE DELETED
 
@@ -47,17 +47,17 @@ export class ReviewComponent implements OnInit {
     }
     console.log("Item Not Found");*/
     this.route.params.subscribe( params => {
-        this.orderID = params['id'];
+      this.orderID = params['id'];
 
-        this.http.get('http://localhost:3000/review/' + this.orderID, { headers : 
+      this.http.get('http://localhost:3000/review/' + this.orderID, { headers : 
         new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         }), withCredentials: true }).subscribe(data => {
-          console.log("Review Item Data", data);
-          this.item = data;
-        }, (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
+        console.log("Review Item Data", data);
+        this.item = data;
+      }, (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
             // A client-side or network error occurred. Handle it accordingly.
             console.log('An error occurred:', err.error.message);
             this.flashMessage.danger('Can\'t add the review', {delay : 3000});
@@ -68,30 +68,33 @@ export class ReviewComponent implements OnInit {
             this.flashMessage.danger('Can\'t add the review.', {delay : 3000});
           }
         }); 
-    });
+      });
 
 
   }
 
   submitReview() {
-    console.log("this.textReview.length: ..", this.textReview.length,  "..");
-  	console.log("Star Rating: ", this.starRating);
-  	console.log("Text Review: ", this.textReview);
-    if(this.textReview.length == 0){
-      alert("Enter review in text field!")
+    // console.log("this.textReview.length: ..", this.textReview.length,  "..");
+    console.log("Star Rating: ", this.starRating);
+    console.log("Text Review: ", this.textReview);
+
+    if(!this.checkIfReviewFormFilled()){
+      console.log("One or more data fields is empty is EMPTY");
+      this.flashMessage.danger("Invalid Form Data", {delay: 4000});
+      return;
     } else {
 
 
       this.http.post('http://localhost:3000/review', {rating : this.starRating, review_text : this.textReview, order_id : this.orderID}, { headers : 
         new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         }), withCredentials: true }).subscribe(data => {
-          console.log("Review Post Data", data);
-          this.router.navigate(['/dashboard']);
-          this.user.setShowMessage('Added Review Successfully');
-        }, (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
+        console.log("Review Post Data", data);
+        this.router.navigate(['/dashboard']);
+        this.user.setShowMessage('Added Review Successfully');
+      }, (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
             // A client-side or network error occurred. Handle it accordingly.
             console.log('An error occurred:', err.error.message);
             this.flashMessage.danger('Can\'t add the review', {delay : 3000});
@@ -101,11 +104,18 @@ export class ReviewComponent implements OnInit {
             console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
             this.flashMessage.danger('Can\'t add the review.', {delay : 3000});
           }
-    }); 
+        }); 
 
   	  //alert("Review Submitted!");   
   	  //this.router.navigate(['dashboard']);
     }
   }
-
+  checkIfReviewFormFilled() {
+    if(
+      this.starRating == null || this.textReview == null || this.textReview == "" || this.starRating > 5 || this.starRating < 1
+      ){
+      return false;
+    }
+    return true;
+  }
 }
