@@ -191,7 +191,7 @@ export class MyaccountComponent implements OnInit {
       } else {
         // The backend returned an unsuccessful response code.
         // The response body may contain clues as to what went wrong,
-        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+        console.log(err);
         this.flashMessage.danger('Invalid login.', {delay : 3000});
       }
     }); 
