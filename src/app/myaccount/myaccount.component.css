@@ -212,6 +212,8 @@ select option {
 }
 .col-half:last-of-type {
   padding-right: 0;
+  padding-top: 15px;
+  padding-left: 10px;
 }
 .col-third {
   padding-right: 10px;
@@ -234,4 +236,9 @@ select option {
 .list-group-item {
   border-color: black;
   background-color: #585858;
+}
+#register-new-card {
+  float: left;
+  padding-left: 30px;
+  width: 70%;
 }

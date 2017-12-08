@@ -141,6 +141,12 @@ export class MyaccountComponent implements OnInit {
     console.log("Address Zip:     ", this.paymentAddressZip)
     console.log("Address Country: ", this.paymentAddressCountry)
 
+    if(!this.checkIfPaymentFormFilled()) {
+      console.log("One or more data fields is empty is EMPTY");
+      this.flashMessage.danger("Add New Card Form Not Complete", {delay: 4000});
+      return;
+    }
+
     var expir_date = this.paymentCardExpMM + this.paymentCardExpYYYY.slice(2, 4);
     var expir_date_num = parseInt(expir_date);
 
@@ -222,5 +228,24 @@ export class MyaccountComponent implements OnInit {
 
     return format_date.slice(0, 2) + '/' + format_date.slice(2, 4);
 
+  }
+
+  checkIfPaymentFormFilled() {
+    if(
+      this.paymentFirstName == "" || this.paymentFirstName == null || 
+      this.paymentLastName == "" || this.paymentLastName == null ||
+      this.paymentCardNumber == "" || this.paymentCardNumber == null ||
+      this.paymentCardCVC == null ||
+      this.paymentCardExpMM == null ||
+      this.paymentCardExpYYYY == null ||
+      this.paymentAddressStreet == "" || this.paymentAddressStreet == null ||
+      this.paymentAddressCity == "" || this.paymentAddressCity == null ||
+      this.paymentAddressState == "" || this.paymentAddressState == null ||
+      this.paymentAddressZip == null ||
+      this.paymentAddressCountry == "" || this.paymentAddressCountry == null
+      ){
+      return false;
+    }
+    return true;
   }
 }

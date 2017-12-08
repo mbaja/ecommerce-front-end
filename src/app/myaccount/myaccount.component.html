@@ -1,7 +1,4 @@
 <app-navbar></app-navbar>
-<div id="flash-message">
-  <flash-message></flash-message>
-</div>
 <div class="container">
   <h1>My Account</h1>
   <ul class="nav nav-pills">
@@ -38,141 +35,145 @@
                 <br>{{order.Item.Product_Desc}}
                 <br>
                 <br><button class="btn btn-primary" type="submit" style="background-color: #00b200;" (click)="openReviewPage(order.Order.OrderID)" routerLink="/review/{{order.Order.OrderID}}" *ngIf="order.Order.Reviewed == 0">
-                  Write a review
-                </button>
-                <button class="btn btn-primary" style="background-color: #00b200;" routerLink="/item/{{order.Item.ItemID}}" *ngIf="order.Order.Reviewed == 1">
-                  Check Reviewed Item
-                </button>
-              </td>
-              <td width="20%">
-                <br>Shipped:
-                <br>Oct 28.2017
-                <br>Tracking:
-                <br>#{{order.Order.Tracking_Num}}
-                <br>Delivery Type:
-                <br>{{order.Order.Delivery_Type}}
-              </td>
-            </tr>
-          </div>
+                Write a review
+              </button>
+              <button class="btn btn-primary" style="background-color: #00b200;" routerLink="/item/{{order.Item.ItemID}}" *ngIf="order.Order.Reviewed == 1">
+                Check Reviewed Item
+              </button>
+            </td>
+            <td width="20%">
+              <br>Shipped:
+              <br>Oct 28.2017
+              <br>Tracking:
+              <br>#{{order.Order.Tracking_Num}}
+              <br>Delivery Type:
+              <br>{{order.Order.Delivery_Type}}
+            </td>
+          </tr>
         </div>
-      </table>
-    </div>
-    <div id="paymentcontent" class="tab-pane fade">
+      </div>
+    </table>
+  </div>
+  <div id="paymentcontent" class="tab-pane fade">
     <h3>Payment Options&hellip;</h3>
-        <!-- <div class="list-group"> -->
-        <div *ngFor="let payment of payments">
-          <div class="list-group-item">
-            <div class="list-group-item-heading">
-              <div class="row radio">
-                <div class="col-xs-12">
-                  <div class="row">
-                    <div class="col-xs-2">
-                      <dl class="dl-small">
-                        <dt>Name</dt>
-                        <dd>{{payment.Cardholder_FirstName}}</dd>
-                        <dd>{{payment.Cardholder_LastName}}</dd>
-                      </dl>
-                    </div>
-                    <div class="col-xs-2">
-                      <dl class="dl-small">
-                        <dt><h4>Credit Card Number</h4></dt>
-                        <dd>{{displayFormatCardNum(payment.Card_Num)}}</dd>
-                      </dl>
-                    </div>
-                    <div class="col-xs-2">
-                      <dl class="dl-small">
-                        <dt>Expiration</dt>
-                        <dd>{{displayFormatExpirDate(payment.Card_ExpirDate)}}</dd>
-                      </dl>
-                    </div>
-                    <div class="col-xs-4">
-                      <dl class="dl-small">
-                        <dt>Billing Address</dt>
-                        <dd>{{payment.Street}}, {{payment.City}}  {{payment.Zip}}, {{payment.State}} {{payment.Zip}} </dd>
-                      </dl>
-                    </div>
-                  </div>
+    <!-- <div class="list-group"> -->
+    <div *ngFor="let payment of payments">
+      <div class="list-group-item">
+        <div class="list-group-item-heading">
+          <div class="row radio">
+            <div class="col-xs-12">
+              <div class="row">
+                <div class="col-xs-2">
+                  <dl class="dl-small">
+                    <dt>Name</dt>
+                    <dd>{{payment.Cardholder_FirstName}}</dd>
+                    <dd>{{payment.Cardholder_LastName}}</dd>
+                  </dl>
+                </div>
+                <div class="col-xs-2">
+                  <dl class="dl-small">
+                    <dt><h4>Credit Card Number</h4></dt>
+                    <dd>{{displayFormatCardNum(payment.Card_Num)}}</dd>
+                  </dl>
+                </div>
+                <div class="col-xs-2">
+                  <dl class="dl-small">
+                    <dt>Expiration</dt>
+                    <dd>{{displayFormatExpirDate(payment.Card_ExpirDate)}}</dd>
+                  </dl>
+                </div>
+                <div class="col-xs-4">
+                  <dl class="dl-small">
+                    <dt>Billing Address</dt>
+                    <dd>{{payment.Street}}, {{payment.City}}  {{payment.Zip}}, {{payment.State}} {{payment.Zip}} </dd>
+                  </dl>
                 </div>
               </div>
             </div>
           </div>
-          </div>
-        <!-- </div> -->
-      <h3>Add New Card</h3>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+    <h3>Add New Card</h3>
+    <div id="register-new-card">
+      <div id="flash-message">
+        <flash-message></flash-message>
+      </div>
       <form (submit)="submitPaymentDetails($event)">
-      <div id="paymentDeets">
-      <div class="row">
-        <div class="input-group input-group-icon">
-          <input name="paymentFirstName" [(ngModel)]="paymentFirstName" type="text" placeholder="Card Holder First Name"/>
-          <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-        </div>
-        <div class="input-group input-group-icon">
-          <input name="paymentLastName" [(ngModel)]="paymentLastName" type="text" placeholder="Card Holder Last"/>
-          <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-        </div>
-        <div class="input-group input-group-icon">
-          <input name="paymentCardNumber" [(ngModel)]="paymentCardNumber" type="text" placeholder="Card Number"/>
-          <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-        </div>
-        <div class="col-half">
-          <div class="input-group input-group-icon">
-            <input name="paymentCardCVC" [(ngModel)]="paymentCardCVC" type="text" placeholder="Card CVC"/>
-            <div class="input-icon"><i class="fa fa-user"></i></div>
+        <div id="paymentDeets">
+          <div class="row">
+            <div class="input-group input-group-icon">
+              <input name="paymentFirstName" [(ngModel)]="paymentFirstName" type="text" placeholder="Card Holder First Name"/>
+              <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+              <input name="paymentLastName" [(ngModel)]="paymentLastName" type="text" placeholder="Card Holder Last"/>
+              <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+              <input name="paymentCardNumber" [(ngModel)]="paymentCardNumber" type="text" placeholder="Card Number"/>
+              <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+            </div>
+            <div class="col-half">
+              <div class="input-group input-group-icon">
+                <input name="paymentCardCVC" [(ngModel)]="paymentCardCVC" type="text" placeholder="Card CVC"/>
+                <div class="input-icon"><i class="fa fa-user"></i></div>
+              </div>
+            </div>
+            <div class="col-half">
+              <div class="input-group">
+                <select name="paymentCardExpMM" [(ngModel)]="paymentCardExpMM">
+                  <option>01</option>
+                  <option>02</option>
+                  <option>03</option>
+                  <option>04</option>
+                  <option>05</option>
+                  <option>06</option>
+                  <option>07</option>
+                  <option>08</option>
+                  <option>09</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                </select>
+                <select name="paymentCardExpYYYY" [(ngModel)]="paymentCardExpYYYY">
+                  <option>2017</option>
+                  <option>2018</option>
+                  <option>2019</option>
+                  <option>2020</option>
+                  <option>2021</option>
+                  <option>2022</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group input-group-icon">
+              <input name="paymentAddressStreet" [(ngModel)]="paymentAddressStreet" type="address" placeholder="Cardholder Adress"/>
+              <div class="input-icon"><i class="fa fa-envelope"></i></div>
+            </div>
+          </div>
+          <div class="row">
+            <div style="width:35%; padding-right: 5px;">
+            <input name="paymentAddressCity" [(ngModel)]="paymentAddressCity" type="text" placeholder="City"/>
+            </div>
+            <div style="width:15%; padding-right: 5px; padding-left: 5px;">
+            <input name="paymentAddressState" [(ngModel)]="paymentAddressState" type="text" placeholder="State"/>
+            </div>
+            <div style="width:20%; padding-right: 5px; padding-left: 5px;">
+            <input name="paymentAddressZip" [(ngModel)]="paymentAddressZip" placeholder="Zip" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "number" maxlength = "5"/>
+            </div>
+            <div style="width:15%;padding-left: 5px;">
+            <input name="paymentAddressCountry" [(ngModel)]="paymentAddressCountry" type="text" placeholder="Country"/>
+            </div>
           </div>
         </div>
-        <div class="col-half">
-          <div class="input-group">
-            <select name="paymentCardExpMM" [(ngModel)]="paymentCardExpMM">
-              <option>01</option>
-              <option>02</option>
-              <option>03</option>
-              <option>04</option>
-              <option>05</option>
-              <option>06</option>
-              <option>07</option>
-              <option>08</option>
-              <option>09</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-            </select>
-            <select name="paymentCardExpYYYY" [(ngModel)]="paymentCardExpYYYY">
-              <option>2017</option>
-              <option>2018</option>
-              <option>2019</option>
-              <option>2020</option>
-              <option>2021</option>
-              <option>2022</option>
-            </select>
-          </div>
+        <div class="row" style="padding-top: 15px;">
+          <button type="submit">Submit</button>
         </div>
-        <div class="input-group input-group-icon">
-          <input name="paymentAddressStreet" [(ngModel)]="paymentAddressStreet" type="address" placeholder="Cardholder Adress"/>
-          <div class="input-icon"><i class="fa fa-envelope"></i></div>
-        </div>
-      </div>
-      <div class="row">
-        <!-- <div class="col-half"> -->
-          <!-- <div class="input-group" width="130%"> -->
-            <div><input name="paymentAddressCity" [(ngModel)]="paymentAddressCity" type="text" placeholder="City"/></div>
-            <div><input name="paymentAddressState" [(ngModel)]="paymentAddressState" type="text" placeholder="State"/>
-            <!-- </div> -->
-          <!-- </div> -->
-        </div>
-        <div class="col-half">
-          <div class="input-group">
-            <div class="col-half"><input name="paymentAddressZip" [(ngModel)]="paymentAddressZip" type="text" placeholder="Zip"/></div>
-            <div class="col-half"><input name="paymentAddressCountry" [(ngModel)]="paymentAddressCountry" type="text" placeholder="Country"/></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <button type="submit">Submit</button>
-    </div>
-    </form>
+      </form>
     </div>
   </div>
+</div>
 </div>
 
 
