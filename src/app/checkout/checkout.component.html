@@ -7,6 +7,9 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
+        <div id="flash-message">
+          <flash-message></flash-message>
+        </div>
          <h3>Delivery Type&hellip;</h3>
          <div class="list-group" style="width: 35%">
           <div class="list-group-item">
@@ -45,43 +48,43 @@
             </label>
           </div>
         </div>
-       
+        
         <h3>Payment Options&hellip;</h3>
         <div class="list-group">
-        <div *ngFor="let payment of payments">
-          <div class="list-group-item">
-            <div class="list-group-item-heading">
-              <div class="row radio">
-                <div class="col-xs-3" style="width: 0%;padding-top: 15px;">
-                  <label>
-                    <input type="radio" name="optionsRadios3" [(ngModel)]="paymentOption" value={{payment.Card_Num}}>
-                  </label>
-                </div>
-                <div class="col-xs-9">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <dl class="dl-small">
-                        <dt><h4>Credit Card Number</h4></dt>
-                        <dd>{{payment.Card_Num}}</dd>
-                      </dl>
-                    </div>
-                    <div class="col-xs-2">
-                      <dl class="dl-small">
-                        <dt>Expiration</dt>
-                        <dd>{{payment.Card_ExpirDate}}</dd>
-                      </dl>
-                    </div>
-                    <div class="col-xs-6">
-                      <dl class="dl-small">
-                        <dt>Billing Address</dt>
-                        <dd>{{payment.Street}}, {{payment.City}}, {{payment.State}} {{payment.Zip}} </dd>
-                      </dl>
+          <div *ngFor="let payment of payments">
+            <div class="list-group-item">
+              <div class="list-group-item-heading">
+                <div class="row radio">
+                  <div class="col-xs-3" style="width: 0%;padding-top: 15px;">
+                    <label>
+                      <input type="radio" name="optionsRadios3" [(ngModel)]="paymentOption" value={{payment.Card_Num}}>
+                    </label>
+                  </div>
+                  <div class="col-xs-9">
+                    <div class="row">
+                      <div class="col-xs-4">
+                        <dl class="dl-small">
+                          <dt><h4>Credit Card Number</h4></dt>
+                          <dd>{{payment.Card_Num}}</dd>
+                        </dl>
+                      </div>
+                      <div class="col-xs-2">
+                        <dl class="dl-small">
+                          <dt>Expiration</dt>
+                          <dd>{{payment.Card_ExpirDate}}</dd>
+                        </dl>
+                      </div>
+                      <div class="col-xs-6">
+                        <dl class="dl-small">
+                          <dt>Billing Address</dt>
+                          <dd>{{payment.Street}}, {{payment.City}}, {{payment.State}} {{payment.Zip}} </dd>
+                        </dl>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           </div>
         </div>
         <div class="well">
@@ -169,7 +172,7 @@
             </div>
           </div> -->
 
-<!-- SHIPPING OPTIONS -->
+          <!-- SHIPPING OPTIONS -->
  <!-- <h3>Ship my order to</h3>
         <div class="list-group">
           <div class="list-group-item">

@@ -81,11 +81,11 @@ export class CheckoutComponent implements OnInit {
 
     console.log("paymentOption: ", parseInt(this.paymentOption));
 
-
-/*    var card_num = req.body.card_num;
-  var customerid = req.user.userid;
-  var delivery_type = req.body.delivery_type;
-  var shipment_company = req.body.shipment_company;*/
+    if(!this.checkIfCheckoutFilled()){
+      console.log("One or more data fields is empty is EMPTY");
+      this.flashMessage.danger("Invalid Form Data", {delay: 4000});
+      return;
+    }
 
     var body = {
       card_num : parseInt(this.paymentOption),
@@ -129,9 +129,13 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkIfCheckoutFilled() {
-    // if() {
-    //   return false;
-    // }
-    // return true;
+    if(
+      this.shippingType == null ||
+      this.deliveryType == null ||
+      this.paymentOption == null
+      ) {
+      return false;
+    }
+    return true;
   }
 }
