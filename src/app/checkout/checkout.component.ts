@@ -3,6 +3,7 @@ import { Payment } from '../objects/payment';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import {ActivatedRoute, Router} from "@angular/router";
 import { FlashMessage } from 'angular-flash-message';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-checkout',
@@ -47,7 +48,7 @@ export class CheckoutComponent implements OnInit {
 
   payments : Payment[];
 
-  constructor(private http : HttpClient, private router : Router, private flashMessage : FlashMessage) { }
+  constructor(private user:UserService, private http : HttpClient, private router : Router, private flashMessage : FlashMessage) { }
 
   ngOnInit() {
 
@@ -100,7 +101,8 @@ export class CheckoutComponent implements OnInit {
     }), withCredentials: true }).subscribe(data => {
       console.log("Checkout Data", data);
       this.router.navigate(['/dashboard']);
-      this.flashMessage.success('Checkout successful.', {delay : 3000});
+      this.user.setShowMessage('Checkout Successful');
+      // this.flashMessage.success('Checkout successful.', {delay : 3000});
     }, (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
         // A client-side or network error occurred. Handle it accordingly.
