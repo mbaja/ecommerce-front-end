@@ -89,6 +89,7 @@ export class StoreComponent implements OnInit {
       if (index >= 0)  {
         this.vendor_items[index].Item.Available = 0;
       }
+      this.flashMessage.success('Item made unavailable', {delay : 3000});
 
     }, (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
@@ -124,6 +125,8 @@ export class StoreComponent implements OnInit {
       if (index >= 0)  {
         this.vendor_items[index].Item.Available = 1;
       }
+
+      this.flashMessage.success('Item made available', {delay : 3000});
 
     }, (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
@@ -178,7 +181,7 @@ export class StoreComponent implements OnInit {
       'Accept': 'application/json'
     }), withCredentials: true }).subscribe(data => {
       console.log("Item Add Data", data);
-      this.user.setShowMessage('Add Item Successful');
+      this.flashMessage.success('Item added successfully', {delay:3000});
 
       this.addItemName = "";
       this.addItemType = "";
@@ -186,6 +189,7 @@ export class StoreComponent implements OnInit {
       this.addItemQuantity = "";
       this.addItemPicture = "";
       this.addItemDesc = "";
+
 
 
       this.http.get('http://localhost:3000/inventory', { headers : 

@@ -138,4 +138,24 @@ export class CheckoutComponent implements OnInit {
     }
     return true;
   }
+
+  displayFormatCardNum(Card_Num) {
+
+    var format_num = Card_Num + "";
+
+    return '********' + format_num.slice(8, 12);
+
+  }
+
+  displayFormatExpirDate(Expir_Date) {
+
+    var format_date = Expir_Date + "";
+
+    if (format_date.length === 3)  {
+      format_date = '0' + format_date;
+    }
+
+    return format_date.slice(0, 2) + '/' + format_date.slice(2, 4);
+
+  }
 }
